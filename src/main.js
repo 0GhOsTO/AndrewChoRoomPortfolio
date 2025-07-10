@@ -21,6 +21,16 @@ dracoLoader.setDecoderPath( "/draco/" );
 const loader = new GLTFLoader();
 loader.setDRACOLoader( dracoLoader );
 
+const environmentMap = new THREE.CubeTextureLoader()
+    .setPath( 'textures/skybox/' )
+    .load( [
+        'px.webp',
+        'nx.webp',
+        'py.webp',
+        'ny.webp',
+        'pz.webp',
+        'nz.webp'
+    ] );
 
 const textureMap = {
     Zero: {
@@ -113,11 +123,22 @@ loader.load("/models/Room_Portfolio_UVupdate-v1.glb", (glb)=>{
                         child.material.map.minFilter = THREE.LinearFilter;
                     }
                 }
-                // if(child.name.includes("")){
-                //     child.material = new THREE.MeshPhysicalMaterial({
-                //         transparent: true,
-                //     })
-                // }
+
+                if(child.name.includes("Glass")){
+                    child.material = new THREE.MeshPhysicalMaterial({
+                        transmission: 1,
+                        opacity: 1,
+                        metalness: 0,
+                        roughness: 0,
+                        ior: 1.5,
+                        thickness: 0.01,
+                        specularIntensity: 1,
+                        envMap: environmentMap,
+                        envMapIntensity: 1,
+                        lightIntensity: 1,
+                        exposure: 1,
+                    })
+                }
             });
         }
     });
