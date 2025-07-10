@@ -108,38 +108,53 @@ Object.entries(textureMap).forEach(([key, paths]) => {
     loadedTextures.night[key] = nightTexture;
 });
 
-loader.load("/models/Room_Portfolio_UVupdate-v1.glb", (glb)=>{
+const videoElement = document.createElement("video");
+videoElement.src = "/textures/room/video/screen.mp4";
+videoElement.loop = true;
+videoElement.muted = true;
+videoElement.playsInline = true;
+videoElement.autoplay = true;
+videoElement.play();
+
+const videoTexture = new THREE.VideoTexture(videoElement);
+videoTexture.colorspace = THREE.SRGBColorSpace;
+videoTexture.flipY = false;
+
+loader.load("/models/Room_Portfolio.glb", (glb)=>{
     glb.scene.traverse((child) =>{
         if(child.isMesh){
-
-            Object.keys(textureMap).forEach((key)=>{
-                if(child.name.includes(key)){
-                    const material = new THREE.MeshBasicMaterial({
-                        map: loadedTextures.day[key]
+            if(child.name.includes("Glass")){
+                child.material = new THREE.MeshPhysicalMaterial({
+                    transmission: 1,
+                    opacity: 1,
+                    metalness: 0,
+                    roughness: 0,
+                    ior: 1.5,
+                    thickness: 0.01,
+                    specularIntensity: 1,
+                    envMap: environmentMap,
+                    envMapIntensity: 1,
+                    // lightIntensity: 1,
+                    // exposure: 1,
+                })
+            }else if(child.name.includes("MachineLearningScreen")){
+                    child.material = new THREE.MeshBasicMaterial({
+                       map: videoTexture
                     });
-                    child.material = material;
+            }else{
+                Object.keys(textureMap).forEach((key)=>{
+                    if(child.name.includes(key)){
+                        const material = new THREE.MeshBasicMaterial({
+                            map: loadedTextures.day[key]
+                        });
+                        child.material = material;
 
-                    if(child.material.map){
-                        child.material.map.minFilter = THREE.LinearFilter;
+                        if(child.material.map){
+                            child.material.map.minFilter = THREE.LinearFilter;
+                        }
                     }
-                }
-
-                if(child.name.includes("Glass")){
-                    child.material = new THREE.MeshPhysicalMaterial({
-                        transmission: 1,
-                        opacity: 1,
-                        metalness: 0,
-                        roughness: 0,
-                        ior: 1.5,
-                        thickness: 0.01,
-                        specularIntensity: 1,
-                        envMap: environmentMap,
-                        envMapIntensity: 1,
-                        lightIntensity: 1,
-                        exposure: 1,
-                    })
-                }
-            });
+                });
+            }
         }
     });
 
@@ -153,7 +168,7 @@ const camera = new THREE.PerspectiveCamera(
     0.1,
     1000
 );
-camera.position.z = 5;
+camera.position.set(8.081110837193457,5.899286695601466,7.641176441114846);
 
 const renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true} );
 renderer.setSize( sizes.width, sizes.height );
@@ -169,7 +184,7 @@ const controls = new OrbitControls( camera, renderer.domElement );
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 controls.update();
-
+controls.target.set(1.5279505254337087, 3.7166745685785796, 1.1424439609332728);
 
 //Event listener
 window.addEventListener( 'resize', () => {
@@ -188,6 +203,18 @@ window.addEventListener( 'resize', () => {
 const render = () => {
     controls.update();
 
+    // console.log(camera.position); // [x, y, z]
+    // // console.log("0000");
+    // console.log(controls.target);
+    // @TODO: Finish underneath line and grab the rotation coordinate.
+    // Change the name of the button through blender
+    // Delete some of the useless sides of the walls.
+    // Download the simple mp4 file and save it somewhere so that I have an access to it.
+
+    // const origin = new THREE.Vector3();
+    // object.getWorldPosition(origin);
+    // console.log("Current rotation origin (default):", origin);
+
     cube.rotation.x += 0.01;
     cube.rotation.y += 0.01;
 
@@ -195,5 +222,7 @@ const render = () => {
 
     window.requestAnimationFrame( render );
 };
+
+
 
 render();
