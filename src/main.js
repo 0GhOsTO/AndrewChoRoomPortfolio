@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-
+import gsap from "gsap"
 
 const canvas = document.querySelector("#experience-canvas");
 const sizes = {
@@ -11,9 +11,42 @@ const sizes = {
     width: window.innerWidth,
 };
 
+const modals = {
+    profile: document.querySelector(".modal.profile"),
+    resume: document.querySelector(".modal.resume"),
+    project: document.querySelector(".modal.project"),
+};
+
+const showModal = (modal) => {
+    modal.style.display = "block"
+    gsap.set(modal, {opacity: 0});
+    gsap.to(modal, {
+        opacity: 1,
+        duration: 0.5,
+    });
+};
+
+const hideMmodal = (modal) => {
+    gsap.to(modal, {
+        opacity: 0,
+        duration: 0.5,
+        onComplete: () => {
+            modal.style.display = "none";
+        }
+    });
+};
+
 const yAxisFan = [];
 
 const raycasterObjects = [];
+let currentIntersects = [];
+
+const socialLinks = {
+    "Github": "https://github.com/0GhOsTO",
+    "LinkedIn": "https://www.linkedin.com/in/andrew-cho-6a0878215/",
+};
+
+
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 //Loaders
@@ -130,6 +163,32 @@ window.addEventListener("mousemove", (e) => {
     pointer.y = -(e.clientY/window.innerHeight) * 2 +1;
 });
 
+window.addEventListener("click", (e)=> {
+    if(currentIntersects.length >0 ){
+       const object = currentIntersects[0].object;
+       console.log("Clicked on:", object.name);
+
+       Object.entries(socialLinks).forEach(([key, url])=>{
+           console.log("key: ", key, "| url: ", url);
+           if(object.name.includes(key)){
+               const newWindow = window.open();
+               newWindow.opener = null;
+               newWindow.location = url;
+               newWindow.target = "_blank";
+               newWindow.rel = "noopener noreferrer";
+           }
+       });
+
+       if(object.name.includes("ProfileButton")) {
+           showModal(modals.profile);
+       }else if(object.name.includes("ResumeButton")){
+           showModal(modals.resume);
+       }else if(object.name.includes("ProjectButton")){
+           showModal(modals.project);
+       }
+   }
+});
+
 loader.load("/models/Room_Portfolio_Ray.glb", (glb)=>{
     glb.scene.traverse((child) =>{
         if(child.isMesh){
@@ -170,7 +229,7 @@ loader.load("/models/Room_Portfolio_Ray.glb", (glb)=>{
                 });
             }
 
-            if(child.name.includes("Button")){
+            if(child.name.includes("Button") || child.name.includes("Acoustic") || child.name.includes("Bass")){
                 raycasterObjects.push(child);
             }
 
@@ -236,16 +295,24 @@ const render = () => {
 
 
     raycaster.setFromCamera(pointer,camera);
-    const intersects = raycaster.intersectObjects(raycasterObjects);
-    for(let i = 0; i<intersects.length;i++){
-        intersects[i].object.material.color.set(0xff0000);
+    currentIntersects = raycaster.intersectObjects(raycasterObjects);
+
+    for(let i = 0; i<currentIntersects.length;i++){
+        // currentIntersects[i].object.material.color.set(0xff0000);
     }
 
-    if(intersects.length>0){
-        document.body.style.cursor = "pointer";
-    }else{
+    if(currentIntersects.length>0){
+        const currentIntersectObject = currentIntersects[0].object;
+
+        if(currentIntersectObject.name.includes("Pointer")){
+            document.body.style.cursor = "pointer";
+        }else{
+            document.body.style.cursor = "default";
+        }
+    } else {
         document.body.style.cursor = "default";
     }
+
 
     renderer.render( scene, camera );
 
