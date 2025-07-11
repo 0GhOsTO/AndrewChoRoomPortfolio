@@ -26,7 +26,7 @@ const showModal = (modal) => {
     });
 };
 
-const hideMmodal = (modal) => {
+const hideModal = (modal) => {
     gsap.to(modal, {
         opacity: 0,
         duration: 0.5,
