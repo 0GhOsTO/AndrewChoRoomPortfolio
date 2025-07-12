@@ -17,6 +17,26 @@ const modals = {
     project: document.querySelector(".modal.project"),
 };
 
+let touched = false;
+document.querySelectorAll(".modal-exit-button").forEach(button => {
+    button.addEventListener("touchend", (e) => {
+        touched = true;
+        e.preventDefault();
+        const modal = e.target.closest(".modal");
+        hideModal(modal);
+    },{passive: false});
+
+    button.addEventListener("click", (e) => {
+        if(touched){
+            return;
+        }
+        touched = true;
+        e.preventDefault();
+        const modal = e.target.closest(".modal");
+        hideModal(modal);
+    },{passive: false});
+});
+
 const showModal = (modal) => {
     modal.style.display = "block"
     gsap.set(modal, {opacity: 0});
@@ -159,35 +179,50 @@ videoTexture.colorspace = THREE.SRGBColorSpace;
 videoTexture.flipY = false;
 
 window.addEventListener("mousemove", (e) => {
+    touched = false;
     pointer.x = (e.clientX/window.innerWidth) * 2 -1;
     pointer.y = -(e.clientY/window.innerHeight) * 2 +1;
 });
 
-window.addEventListener("click", (e)=> {
+//For Android
+window.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    pointer.x = (e.touches[0].clientX/window.innerWidth) * 2 -1;
+    pointer.y = -(e.touches[0].clientY/window.innerHeight) * 2 +1;
+}, {passive: false});
+
+window.addEventListener("touchend", (e) => {
+    e.preventDefault();
+    handleRaycasterInteraction();
+}, {passive: false});
+
+function handleRaycasterInteraction() {
     if(currentIntersects.length >0 ){
-       const object = currentIntersects[0].object;
-       console.log("Clicked on:", object.name);
+        const object = currentIntersects[0].object;
+        console.log("Clicked on:", object.name);
 
-       Object.entries(socialLinks).forEach(([key, url])=>{
-           console.log("key: ", key, "| url: ", url);
-           if(object.name.includes(key)){
-               const newWindow = window.open();
-               newWindow.opener = null;
-               newWindow.location = url;
-               newWindow.target = "_blank";
-               newWindow.rel = "noopener noreferrer";
-           }
-       });
+        Object.entries(socialLinks).forEach(([key, url])=>{
+            console.log("key: ", key, "| url: ", url);
+            if(object.name.includes(key)){
+                const newWindow = window.open();
+                newWindow.opener = null;
+                newWindow.location = url;
+                newWindow.target = "_blank";
+                newWindow.rel = "noopener noreferrer";
+            }
+        });
 
-       if(object.name.includes("ProfileButton")) {
-           showModal(modals.profile);
-       }else if(object.name.includes("ResumeButton")){
-           showModal(modals.resume);
-       }else if(object.name.includes("ProjectButton")){
-           showModal(modals.project);
-       }
-   }
-});
+        if(object.name.includes("ProfileButton")) {
+            showModal(modals.profile);
+        }else if(object.name.includes("ResumeButton")){
+            showModal(modals.resume);
+        }else if(object.name.includes("ProjectButton")){
+            showModal(modals.project);
+        }
+    }
+}
+
+window.addEventListener("click", handleRaycasterInteraction);
 
 loader.load("/models/Room_Portfolio_Ray.glb", (glb)=>{
     glb.scene.traverse((child) =>{

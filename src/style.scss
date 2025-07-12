@@ -1,7 +1,12 @@
+@use "./styles/fonts.scss";
+@use "./styles/reset.scss";
+@use "./styles/variables.scss" as vars;
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "HelveticaBold", Inter, system-ui, sans-serif;
 }
 
 :root {
@@ -22,6 +27,10 @@
   top: 0;
   left: 0;
   overflow: hidden;
+  // This is how you create the break point so that you do not need to type and convert the media screne everytime
+  //  @include(<=mobile) {
+  //
+  //}
 
   #experience-canvas{
     height: 100%;
@@ -34,9 +43,11 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  max-width: 700px;
+  width: 100%;
   transform: translate(-50%, -50%);
   font-size: 32px;
   z-index: 999;
   display: none;
-  background-color: black;
+  background-color: vars.$base-origin;
 }

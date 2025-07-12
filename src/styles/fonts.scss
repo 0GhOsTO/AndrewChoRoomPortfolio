@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'HelveticaBold';
+  src: url('/public/fonts/Helvetica-Bold.woff2') format('woff2'),
+  url('/public/fonts/Helvetica-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('/public/fonts/Helvetica.woff2') format('woff2'),
+  url('/public/fonts/Helvetica.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HelveticaBoldTilted';
+  src: url('/public/fonts/Helvetica-BoldOblique.woff2') format('woff2'),
+  url('/public/fonts/Helvetica-BoldOblique.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
