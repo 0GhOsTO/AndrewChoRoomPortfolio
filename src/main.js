@@ -1,6 +1,6 @@
 import './style.scss'
 import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { OrbitControls } from '/src/utils/OrbitControls.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import gsap from "gsap"
@@ -37,8 +37,19 @@ document.querySelectorAll(".modal-exit-button").forEach(button => {
     },{passive: false});
 });
 
+//SHOWING THE MODAL
+let isModalOpen = false;
 const showModal = (modal) => {
     modal.style.display = "block"
+    isModalOpen = true;
+    controls.enabled = false;
+    if(currentHovered){
+        playHoverAnimation(currentHovered, false);
+        currentHovered = null;
+    }
+    document.body.style.cursor = "default";
+    currentIntersects = [];
+
     gsap.set(modal, {opacity: 0});
     gsap.to(modal, {
         opacity: 1,
@@ -47,6 +58,8 @@ const showModal = (modal) => {
 };
 
 const hideModal = (modal) => {
+    isModalOpen = false;
+    controls.enabled = true;
     gsap.to(modal, {
         opacity: 0,
         duration: 0.5,
@@ -56,10 +69,12 @@ const hideModal = (modal) => {
     });
 };
 
+
 const yAxisFan = [];
 
 const raycasterObjects = [];
 let currentIntersects = [];
+let currentHovered = null;
 
 const socialLinks = {
     "Github": "https://github.com/0GhOsTO",
@@ -74,13 +89,13 @@ const textureLoader = new THREE.TextureLoader();
 
 // Instantiate a loader
 const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath( "/draco/" );
+dracoLoader.setDecoderPath( "./draco/" );
 
 const loader = new GLTFLoader();
 loader.setDRACOLoader( dracoLoader );
 
 const environmentMap = new THREE.CubeTextureLoader()
-    .setPath( 'textures/skybox/' )
+    .setPath( './textures/skybox/' )
     .load( [
         'px.webp',
         'nx.webp',
@@ -92,60 +107,60 @@ const environmentMap = new THREE.CubeTextureLoader()
 
 const textureMap = {
     Zero: {
-        day: "textures/room/day/DayBackground.webp",
-        night:"textures/room/night/NightBackground.webp",
+        day: "/textures/room/day/DayBackground.webp",
+        night:"./textures/room/night/NightBackground.webp",
     },
     First: {
-        day: "textures/room/day/DayRightWall.webp",
-        night:"textures/room/night/NightRightWall.webp",
+        day: "/textures/room/day/DayRightWall.webp",
+        night:"/textures/room/night/NightRightWall.webp",
     },
     Second: {
-        day: "textures/room/day/DayLeftWall.webp",
-        night:"textures/room/night/NightLeftWall.webp",
+        day: "/textures/room/day/DayLeftWall.webp",
+        night:"/textures/room/night/NightLeftWall.webp",
     },
     Third: {
-        day: "textures/room/day/DayFullBackground.webp",
-        night:"textures/room/night/NightFullBackground.webp",
+        day: "/textures/room/day/DayFullBackground.webp",
+        night:"/textures/room/night/NightFullBackground.webp",
     },
     Fourth: {
-        day: "textures/room/day/DayWood.webp",
-        night:"textures/room/night/NightWood.webp",
+        day: "/textures/room/day/DayWood.webp",
+        night:"/textures/room/night/NightWood.webp",
     },
     Fifth: {
-        day: "textures/room/day/DayAnimatable.webp",
-        night:"textures/room/night/NightAnimatable.webp",
+        day: "/textures/room/day/DayAnimatable.webp",
+        night:"/textures/room/night/NightAnimatable.webp",
     },
     Sixth: {
-        day: "textures/room/day/DayComputer.webp",
-        night:"textures/room/night/NightComputer.webp",
+        day: "/textures/room/day/DayComputer.webp",
+        night:"/textures/room/night/NightComputer.webp",
     },
     Absolution: {
-        day: "textures/room/day/pngDay/DayAbsolution.webp",
-        night:"textures/room/day/pngNight/NightAbsolution.webp",
+        day: "/textures/room/day/pngDay/DayAbsolution.webp",
+        night:"/textures/room/day/pngNight/NightAbsolution.webp",
     },
     AlanTuring: {
-        day: "textures/room/day/pngDay/DayAlanTuring.webp",
-        night:"textures/room/day/pngNight/NightDayAlanTuring.webp",
+        day: "/textures/room/day/pngDay/DayAlanTuring.webp",
+        night:"/textures/room/day/pngNight/NightDayAlanTuring.webp",
     },
     HotFuss: {
-        day: "textures/room/day/pngDay/DayHotFuss.webp",
-        night:"textures/room/day/pngNight/NightHotFuss.webp",
+        day: "/textures/room/day/pngDay/DayHotFuss.webp",
+        night:"/textures/room/day/pngNight/NightHotFuss.webp",
     },
     Note: {
-        day: "textures/room/day/pngDay/DayNotes.webp",
-        night: "textures/room/day/pngNight/NightNotes.webp",
+        day: "/textures/room/day/pngDay/DayNotes.webp",
+        night: "/textures/room/day/pngNight/NightNotes.webp",
     },
     OriginOfSymmetry: {
-        day: "textures/room/day/pngDay/DayOriginOfSymmetry.webp",
-        night:"textures/room/day/pngNight/NightOriginOfSymmetry.webp",
+        day: "/textures/room/day/pngDay/DayOriginOfSymmetry.webp",
+        night:"/textures/room/day/pngNight/NightOriginOfSymmetry.webp",
     },
     PepperTones: {
-        day: "textures/room/day/pngDay/DayPepperTones.webp",
-        night:"textures/room/day/pngNight/NightPepperTones.webp",
+        day: "/textures/room/day/pngDay/DayPepperTones.webp",
+        night:"/textures/room/day/pngNight/NightPepperTones.webp",
     },
     ShapeOfYou: {
-        day: "textures/room/day/pngDay/DayShapeOfYou.webp",
-        night:"textures/room/day/pngNight/NightShapeOfYou.webp",
+        day: "/textures/room/day/pngDay/DayShapeOfYou.webp",
+        night:"/textures/room/day/pngNight/NightShapeOfYou.webp",
     },
 };
 
@@ -186,12 +201,14 @@ window.addEventListener("mousemove", (e) => {
 
 //For Android
 window.addEventListener("touchstart", (e) => {
+    if(isModalOpen)return;
     e.preventDefault();
     pointer.x = (e.touches[0].clientX/window.innerWidth) * 2 -1;
     pointer.y = -(e.touches[0].clientY/window.innerHeight) * 2 +1;
 }, {passive: false});
 
 window.addEventListener("touchend", (e) => {
+    if(isModalOpen)return;
     e.preventDefault();
     handleRaycasterInteraction();
 }, {passive: false});
@@ -226,7 +243,20 @@ window.addEventListener("click", handleRaycasterInteraction);
 
 loader.load("/models/Room_Portfolio_Ray.glb", (glb)=>{
     glb.scene.traverse((child) =>{
+
+
         if(child.isMesh){
+            if(child.name.includes("RayCaster")|| child.name.includes("GithubButton")){
+                raycasterObjects.push(child);
+            }
+
+            if(child.name.includes("RayCaster")|| child.name.includes("GithubButton")){
+                child.userData.initialScale = new THREE.Vector3().copy(child.scale);
+                child.userData.initialPosition = new THREE.Vector3().copy(child.position);
+                child.userData.initialRotation = new THREE.Vector3().copy(child.rotation);
+                child.userData.isAnimating = false;
+            }
+
             if(child.name.includes("Glass")){
                 child.material = new THREE.MeshPhysicalMaterial({
                     transmission: 1,
@@ -264,9 +294,7 @@ loader.load("/models/Room_Portfolio_Ray.glb", (glb)=>{
                 });
             }
 
-            if(child.name.includes("Button") || child.name.includes("Acoustic") || child.name.includes("Bass")){
-                raycasterObjects.push(child);
-            }
+
 
         }
     });
@@ -294,6 +322,13 @@ scene.add( cube );
 
 
 const controls = new OrbitControls( camera, renderer.domElement );
+controls.minPolarAngle = 0;
+controls.maxPolarAngle = Math.PI / 2;
+controls.minAzimuthAngle = 0;
+controls.maxAzimuthAngle = Math.PI / 2;
+controls.minDistance = 3;
+controls.maxDistance = 40;
+
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 controls.update();
@@ -314,6 +349,48 @@ window.addEventListener( 'resize', () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
 
+function playHoverAnimation(object, isHovering){
+    gsap.killTweensOf(object.scale);
+    gsap.killTweensOf(object.rotation);
+    gsap.killTweensOf(object.position);
+
+    if(isHovering){
+        gsap.to(object.scale,{
+            x: object.userData.initialScale.x*1.2,
+            y: object.userData.initialScale.y*1.2,
+            z: object.userData.initialScale.z*1.2,
+            duration: 0.5,
+            ease: "bounce.out(1.8)",
+        });
+
+        gsap.to(object.rotation,{
+            x: object.userData.initialRotation.x + Math.PI/8,
+            duration: 0.5,
+            ease: "bounce.out(1.8)",
+            onComplete: () => {
+                object.userData.isAnimating = false;
+            }
+        });
+    }else{
+        gsap.to(object.scale,{
+            x: object.userData.initialScale.x,
+            y: object.userData.initialScale.y,
+            z: object.userData.initialScale.z,
+            duration: 0.3,
+            ease: "bounce.out(1.8)",
+        });
+
+        gsap.to(object.rotation,{
+            x: object.userData.initialRotation.x,
+            duration: 0.5,
+            ease: "bounce.out(1.8)",
+            onComplete: () => {
+                object.userData.isAnimating = false;
+            }
+        });
+    }
+}
+
 const render = () => {
     controls.update();
 
@@ -329,25 +406,43 @@ const render = () => {
     });
 
 
-    raycaster.setFromCamera(pointer,camera);
-    currentIntersects = raycaster.intersectObjects(raycasterObjects);
+    //RayCaster
+    if(!isModalOpen) {
+        raycaster.setFromCamera(pointer, camera);
 
-    for(let i = 0; i<currentIntersects.length;i++){
-        // currentIntersects[i].object.material.color.set(0xff0000);
-    }
+        currentIntersects = raycaster.intersectObjects(raycasterObjects);
 
-    if(currentIntersects.length>0){
-        const currentIntersectObject = currentIntersects[0].object;
+        for (let i = 0; i < currentIntersects.length; i++) {
+            // currentIntersects[i].object.material.color.set(0xff0000);
+        }
 
-        if(currentIntersectObject.name.includes("Pointer")){
-            document.body.style.cursor = "pointer";
-        }else{
+        if (currentIntersects.length > 0) {
+            const currentIntersectObject = currentIntersects[0].object;
+
+            if (currentIntersectObject.name.includes("RayCaster") || currentIntersectObject.name.includes("GithubButton")) {
+                if (currentIntersectObject !== currentHovered) {
+                    if (currentHovered) {
+                        playHoverAnimation(currentHovered, false);
+                    }
+
+                    playHoverAnimation(currentIntersectObject, true);
+                    currentHovered = currentIntersectObject;
+                }
+            }
+
+            if (currentIntersectObject.name.includes("Pointer")) {
+                document.body.style.cursor = "pointer";
+            } else {
+                document.body.style.cursor = "default";
+            }
+        } else {
+            if (currentHovered) {
+                playHoverAnimation(currentHovered, false);
+                currentHovered = null;
+            }
             document.body.style.cursor = "default";
         }
-    } else {
-        document.body.style.cursor = "default";
     }
-
 
     renderer.render( scene, camera );
 

@@ -1,4 +1,8 @@
 TODO
-->video: 8:01
-1. Finish creating your own button interaction
-2. Hovering effect / Raycaster shit
+1. Chair object need to be fixed.
+2. Github button need to added as a raycaster object
+3. Full background needs to be increase in heigh | scale also needs to be increased
+4. Animation for each object needs to be fixed
+5. fix FUCK TONS of errors.
+6. Create intro animation. Video-> 8:30
+6. Night
