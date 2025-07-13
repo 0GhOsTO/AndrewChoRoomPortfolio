@@ -5,6 +5,8 @@ import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import gsap from "gsap"
 
+const isMobile = window.innerWidth < 530; // You can adjust the threshold
+
 const canvas = document.querySelector("#experience-canvas");
 const sizes = {
     height: window.innerHeight,
@@ -314,7 +316,12 @@ const camera = new THREE.PerspectiveCamera(
     0.1,
     1000
 );
-camera.position.set(8.081110837193457,5.899286695601466,7.641176441114846);
+//mobile
+if(isMobile){
+    camera.position.set(13.302868985434001, 7.984620033890129, 13.283042054058505);
+}else{
+    camera.position.set( 9.341425508289262, 6.582700064329998, 9.4580936212497 );
+}
 
 const renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true} );
 renderer.setSize( sizes.width, sizes.height );
@@ -337,8 +344,18 @@ controls.maxDistance = 35;
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 controls.update();
-controls.target.set(-1.8610304303839955, 2.3808504327544835, -1.9583995416260147);
 
+//mobile
+controls.target.set(-2.183442135866024, 2.5041508713161345, -1.66967449867141);
+
+//Object { x: -2.183442135866024, y: 2.5041508713161345, z: -1.66967449867141 }
+// main.js:502:13
+// Object { x: 9.341425508289262, y: 6.582700064329998, z: 9.4580936212497 }
+
+
+//Object { x: 3 }
+// main.js:482:13
+// Object {  }
 
 //Event listener
 window.addEventListener( 'resize', () => {
