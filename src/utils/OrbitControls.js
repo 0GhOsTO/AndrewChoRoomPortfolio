@@ -42,6 +42,9 @@ const _TILT_LIMIT = Math.cos( 70 * MathUtils.DEG2RAD );
 const _v = new Vector3();
 const _twoPI = 2 * Math.PI;
 
+const minPan = new Vector3(-1, -1, -2);
+const maxPan = new Vector3(2, 5, 2);
+
 const _STATE = {
     NONE: - 1,
     ROTATE: 0,
@@ -666,6 +669,7 @@ class OrbitControls extends Controls {
             this.target.add( this._panOffset );
 
         }
+        this.target.clamp(minPan, maxPan);
 
         // Limit the target distance from the cursor to create a sphere around the center of interest
         this.target.sub( this.cursor );

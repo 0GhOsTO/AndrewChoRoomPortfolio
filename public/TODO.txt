@@ -1,8 +1,6 @@
 TODO
-1. Chair object need to be fixed.
-2. Github button need to added as a raycaster object
-3. Full background needs to be increase in heigh | scale also needs to be increased
-4. Animation for each object needs to be fixed
-5. fix FUCK TONS of errors.
-6. Create intro animation. Video-> 8:30
-6. Night
+1. Fix fuck tons of error occur in Laptop.
+2. Create the small block html file that shows me who the hell I am
+3. Delete the small blobs at the wall.
+4. Night button + texture conversion
+5. Loading screen(going from bottomn to top)

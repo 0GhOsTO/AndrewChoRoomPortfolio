@@ -241,20 +241,27 @@ function handleRaycasterInteraction() {
 
 window.addEventListener("click", handleRaycasterInteraction);
 
-loader.load("/models/Room_Portfolio_Ray.glb", (glb)=>{
+loader.load("/models/Room_Portfolio_Please_Last.glb", (glb)=>{
     glb.scene.traverse((child) =>{
 
-
         if(child.isMesh){
-            if(child.name.includes("RayCaster")|| child.name.includes("GithubButton")){
+            if(child.name.includes("RayCaster")){
                 raycasterObjects.push(child);
-            }
-
-            if(child.name.includes("RayCaster")|| child.name.includes("GithubButton")){
                 child.userData.initialScale = new THREE.Vector3().copy(child.scale);
                 child.userData.initialPosition = new THREE.Vector3().copy(child.position);
                 child.userData.initialRotation = new THREE.Vector3().copy(child.rotation);
-                child.userData.isAnimating = false;
+            }
+
+            if(child.name.includes("ChairTop")){
+                child.rotation.y = -Math.PI/30;
+                gsap.to(child.rotation,{
+                   y: Math.PI/30,
+                   duration: 3,
+                   repeat: -1,
+                   yoyo: true,
+                   ease: "sine.inOut",
+                    id: "chair-rotation"
+                });
             }
 
             if(child.name.includes("Glass")){
@@ -268,8 +275,6 @@ loader.load("/models/Room_Portfolio_Ray.glb", (glb)=>{
                     specularIntensity: 1,
                     envMap: environmentMap,
                     envMapIntensity: 1,
-                    // lightIntensity: 1,
-                    // exposure: 1,
                 })
             }else if(child.name.includes("MachineLearningScreen")){
                     child.material = new THREE.MeshBasicMaterial({
@@ -327,7 +332,7 @@ controls.maxPolarAngle = Math.PI / 2;
 controls.minAzimuthAngle = 0;
 controls.maxAzimuthAngle = Math.PI / 2;
 controls.minDistance = 3;
-controls.maxDistance = 40;
+controls.maxDistance = 35;
 
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
@@ -351,43 +356,121 @@ window.addEventListener( 'resize', () => {
 
 function playHoverAnimation(object, isHovering){
     gsap.killTweensOf(object.scale);
-    gsap.killTweensOf(object.rotation);
+    gsap.getTweensOf(object.rotation).forEach(tween => {
+        if(tween.vars.id !== "chair-rotation"){
+            tween.kill();
+        }
+    });
     gsap.killTweensOf(object.position);
 
     if(isHovering){
-        gsap.to(object.scale,{
-            x: object.userData.initialScale.x*1.2,
-            y: object.userData.initialScale.y*1.2,
-            z: object.userData.initialScale.z*1.2,
-            duration: 0.5,
-            ease: "bounce.out(1.8)",
-        });
+        console.log("name: ", object.name);
+        //Bass
+        if(object.name.includes("Bass")){
+            gsap.to(object.scale,{
+                x: object.userData.initialScale.x*1.3,
+                y: object.userData.initialScale.y*1.3,
+                z: object.userData.initialScale.z*1.3,
+                duration: 0.3,
+                ease: "bounce.out(1.8)",
 
-        gsap.to(object.rotation,{
-            x: object.userData.initialRotation.x + Math.PI/8,
-            duration: 0.5,
-            ease: "bounce.out(1.8)",
-            onComplete: () => {
-                object.userData.isAnimating = false;
-            }
-        });
+            });
+
+            gsap.to(object.position,{
+                x: object.userData.initialPosition.x+0.13,
+                duration:0.3,
+            });
+        }else if(object.name.includes("LinkedInButton") || object.name.includes("GithubButton")){
+            gsap.to(object.scale,{
+                x: object.userData.initialScale.x*1.3,
+                y: object.userData.initialScale.y*1.3,
+                z: object.userData.initialScale.z*1.3,
+                duration:0.3,
+                ease: "bounce.out(1.8)",
+            });
+
+            gsap.to(object.position,{
+                z: object.userData.initialPosition.z+0.05,
+                duration:0.5,
+            });
+        }else if(object.name.includes("Profile") || object.name.includes("Resume") || object.name.includes("Project")){
+            gsap.to(object.scale,{
+                x: object.userData.initialScale.x*1.2,
+                y: object.userData.initialScale.y*1.2,
+                z: object.userData.initialScale.z*1.2,
+                duration: 0.3,
+                ease: "bounce.out(1.8)",
+            });
+
+            gsap.to(object.rotation,{
+                x: object.userData.initialRotation.x + Math.PI/10,
+                duration:0.3,
+                ease: "bounce.out(1.8)",
+            });
+
+            gsap.to(object.position,{
+                x: object.userData.initialPosition.x+0.1,
+                duration:0.3,
+            });
+        }else{
+            gsap.to(object.scale,{
+                x: object.userData.initialScale.x*1.2,
+                y: object.userData.initialScale.y*1.2,
+                z: object.userData.initialScale.z*1.2,
+                duration: 0.3,
+                ease: "bounce.out(1.3)",
+            });
+        }
     }else{
-        gsap.to(object.scale,{
-            x: object.userData.initialScale.x,
-            y: object.userData.initialScale.y,
-            z: object.userData.initialScale.z,
-            duration: 0.3,
-            ease: "bounce.out(1.8)",
-        });
+        if(object.name.includes("LinkedInButton") || object.name.includes("GithubButton")) {
+            gsap.to(object.scale, {
+                x: object.userData.initialScale.x,
+                y: object.userData.initialScale.y,
+                z: object.userData.initialScale.z,
+                duration: 0.3,
+            });
 
-        gsap.to(object.rotation,{
-            x: object.userData.initialRotation.x,
-            duration: 0.5,
-            ease: "bounce.out(1.8)",
-            onComplete: () => {
-                object.userData.isAnimating = false;
-            }
-        });
+            gsap.to(object.position,{
+                z: object.userData.initialPosition.z,
+                duration:0.3,
+            });
+        }else if(object.name.includes("Bass")) {
+            gsap.to(object.scale, {
+                x: object.userData.initialScale.x,
+                y: object.userData.initialScale.y,
+                z: object.userData.initialScale.z,
+                duration: 0.3,
+            });
+
+            gsap.to(object.position,{
+                x: object.userData.initialPosition.x,
+                duration:0.3,
+            });
+        }else if(object.name.includes("Profile") || object.name.includes("Resume") || object.name.includes("Project")) {
+            gsap.to(object.scale, {
+                x: object.userData.initialScale.x,
+                y: object.userData.initialScale.y,
+                z: object.userData.initialScale.z,
+                duration: 0.3,
+            });
+
+            gsap.to(object.position,{
+                x: object.userData.initialPosition.x,
+                duration:0.3,
+            });
+
+            gsap.to(object.rotation, {
+                x: object.userData.initialRotation.x,
+                duration: 0.3,
+            });
+        }else{
+            gsap.to(object.scale,{
+                x: object.userData.initialScale.x,
+                y: object.userData.initialScale.y,
+                z: object.userData.initialScale.z,
+                duration: 0.3,
+            });
+        }
     }
 }
 
@@ -406,20 +489,18 @@ const render = () => {
     });
 
 
+
     //RayCaster
     if(!isModalOpen) {
         raycaster.setFromCamera(pointer, camera);
 
         currentIntersects = raycaster.intersectObjects(raycasterObjects);
 
-        for (let i = 0; i < currentIntersects.length; i++) {
-            // currentIntersects[i].object.material.color.set(0xff0000);
-        }
 
         if (currentIntersects.length > 0) {
             const currentIntersectObject = currentIntersects[0].object;
 
-            if (currentIntersectObject.name.includes("RayCaster") || currentIntersectObject.name.includes("GithubButton")) {
+            if (currentIntersectObject.name.includes("RayCaster")) {
                 if (currentIntersectObject !== currentHovered) {
                     if (currentHovered) {
                         playHoverAnimation(currentHovered, false);
