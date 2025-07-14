@@ -9,49 +9,54 @@
   <body>
     <div id="app"></div>
 
-    <div class = "profile modal">
-      <h1 class = "modal-title">Profile</h1>
-<!--      insert the image over here-->
-      <p>Hello, my name is Andrew Cho. I’m a computer scientist studying at Boston University, working toward a Bachelor’s degree.
+    <div class = "modal-container">
+      <div class = "profile modal">
+        <button class = "modal-exit-button">×</button>
+        <h1 class = "modal-title">Profile</h1>
+        <!--      insert the image over here-->
+        <div class = "modal-content">
+          <p>Hello, my name is Andrew Cho. I’m a computer scientist studying at Boston University, working toward a Bachelor’s degree.
 
-      I have always surprised by how code works and how programming languages are designed. When I first
-        learned how to describe code mathematically, I was genuinely surprised by how thoughtfully the languages are
-        constructed. That was the moment that made me to pursue Computer Science and how software is made.
-      </p>
+            I have always surprised by how code works and how programming languages are designed. When I first
+            learned how to describe code mathematically, I was genuinely surprised by how thoughtfully the languages are
+            constructed. That was the moment that made me to pursue Computer Science and how software is made.
+          </p>
 
-      <p>
-        Lately, I have been diving in to machine learning, starting from EM and SVD. I found myself enjoying
-        the logic and the process, so now I am studying more about the foundations of machine learning and software engineering in depth.
-      </p>
+          <p>
+            Lately, I have been diving in to machine learning, starting from EM and SVD. I found myself enjoying
+            the logic and the process, so now I am studying more about the foundations of machine learning and software engineering in depth.
+          </p>
 
-      <p>
-        Outside of academics, I spend time playing guitar and drawing. These hobbies helped me to realize the
-        importance of working with others(teamwork). While playing guitar in the band, I had to listen
-        and sync with the bass, drums, and vocals. It showed me that collaboration does matters. Drawing taught
-        me that there's never just one solution on problem: everyone sees the same object in different perspective.
-        Coding feels the same. Even if I think my solution is perfect, someone else might approach it better. Drawing
-        helped me to learn how much I can learn from other people.
-      </p>
+          <p>
+            Outside of academics, I spend time playing guitar and drawing. These hobbies helped me to realize the
+            importance of working with others(teamwork). While playing guitar in the band, I had to listen
+            and sync with the bass, drums, and vocals. It showed me that collaboration does matters. Drawing taught
+            me that there's never just one solution on problem: everyone sees the same object in different perspective.
+            Coding feels the same. Even if I think my solution is perfect, someone else might approach it better. Drawing
+            helped me to learn how much I can learn from other people.
+          </p>
 
-      <p>Whether it's through code, art, or music, I am always looking for ways to express ideas and solve
-      problems in ways that can build connection with others. </p>
+          <p>Whether it's through code, art, or music, I am always looking for ways to express ideas and solve
+            problems in ways that can build connection with others. </p>
+        </div>
 
-      <button class = "modal-exit-button">×</button>
+      </div>
+
+      <div class = "resume modal">
+        <h1 class = "modal-title">resume</h1>
+        <button class = "modal-exit-button">×</button>
+      </div>
+
+      <div class = "project modal">
+        <h1 class = "modal-title">contact</h1>
+        <button class = "modal-exit-button MODAL">×</button>
+      </div>
+
+      <div id = "experience">
+        <canvas id="experience-canvas" class = "experience-canvas"></canvas>
+      </div>
     </div>
 
-    <div class = "resume modal">
-      <h1 class = "modal-title">resume</h1>
-      <button class = "modal-exit-button">×</button>
-    </div>
-
-    <div class = "project modal">
-      <h1 class = "modal-title">contact</h1>
-      <button class = "modal-exit-button MODAL">×</button>
-    </div>
-
-    <div id = "experience">
-      <canvas id="experience-canvas" class = "experience-canvas"></canvas>
-    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
