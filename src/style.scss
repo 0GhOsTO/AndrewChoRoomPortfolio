@@ -55,6 +55,9 @@
 
   max-height: 80vh;
   overflow-y: auto;
+  overflow-x: hidden;
+  white-space: normal;
+  word-wrap: break-word;
 
   .modal-exit-button{
     display: flex;
