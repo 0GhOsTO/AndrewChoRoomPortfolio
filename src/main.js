@@ -494,9 +494,9 @@ function playHoverAnimation(object, isHovering){
 const render = () => {
     controls.update();
 
-    console.log(camera.position); // [x, y, z]
-    // console.log("0000");
-    console.log(controls.target);
+    // console.log(camera.position); // [x, y, z]
+    // // console.log("0000");
+    // console.log(controls.target);
     // @TODO: Finish underneath line and grab the rotation coordinate.
     // Change the name of the button through blender
     // Delete some of the useless sides of the walls.
