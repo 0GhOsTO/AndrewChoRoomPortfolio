@@ -1,6 +1,5 @@
 TODO
-1. Fix fuck tons of error occur in Laptop.
-2. Create the small block html file that shows me who the hell I am
-3. Delete the small blobs at the wall.
-4. Night button + texture conversion
-5. Loading screen(going from bottomn to top)
+1. pdf previewer
+2. project preview
+3. night -> day conversion
+4. add music controller.

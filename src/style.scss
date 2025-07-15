@@ -49,32 +49,53 @@
   height: 100vh;
 }
 
+.profile-image{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1px;
+}
 
 .modal{
+  font-family: "Helvetica", serif;
+  font-size: 21px;
+  line-height: 1.3;
+
+
+  .modal-title{
+    font-family: "HelveticaBold", serif;
+    font-size: 30px;
+  }
+
   position: fixed;
   width: 90%;
   padding: 2rem;
-  //margin: 0 auto;
   max-height: 80vh;
   max-width: 700px;
-  font-size: 32px;
+
   z-index: 999;
   display: none;
-  background-color: vars.$base-origin;
+  background-color: #f5e6df;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 
   overflow-y: auto;
   overflow-x: hidden;
   white-space: normal;
-  word-wrap: break-word;
+
 
   .modal-content{
+    color: #32312d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     overflow-y: auto;
     overflow-x: hidden;
     word-wrap: break-word;
     white-space: normal;
-    padding: 4rem 1rem 4rem 1rem;
+    padding: 1rem 1rem 1rem 1rem;
   }
 
 }
@@ -89,7 +110,7 @@
   font-weight: bold;
   border: none;
   border-radius: 12px; // ← rounded square
-  background-color: #ff4d4f;
+  background-color: #e83e3e;
   color: white;
   cursor: pointer;
 
@@ -108,26 +129,21 @@
   }
 }
 
-.modal-content::-webkit-scrollbar {
-  width: 8px;
+.modal::-webkit-scrollbar {
+  width: 17px; // vertical scrollbar
 }
 
-.modal-content::-webkit-scrollbar-track {
-  background: #f1f1f1;
+.modal::-webkit-scrollbar-track {
+  background: #fec097;
   border-radius: 8px;
 }
 
-.modal-content::-webkit-scrollbar-thumb {
-  background-color: #888;
+.modal::-webkit-scrollbar-thumb {
+  background: #da7702;
   border-radius: 8px;
-  border: 2px solid #f1f1f1;
+  //border: 2px solid #f0f0f0; // padding inside thumb
 }
 
-.modal-content::-webkit-scrollbar-thumb:hover {
+.modal::-webkit-scrollbar-thumb:hover {
   background: #555;
-}
-
-.modal-content {
-  scrollbar-width: thin;
-  scrollbar-color: #888 #f1f1f1;
 }
