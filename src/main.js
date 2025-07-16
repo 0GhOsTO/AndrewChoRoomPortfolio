@@ -60,16 +60,35 @@ document.querySelectorAll(".modal-exit-button").forEach(button => {
     },{passive: false});
 });
 
-let dayTimeTouched =false;
+let isNight =false;
 document.querySelector(".sunny-side").addEventListener("touchend", (e) => {
-
-
-},{passive: true});
+    isNight = !isNight;
+    console.log("BUTTON CLICKED");
+    scene.traverse((child)=> {
+        if(
+            child.isMesh &&
+            child.userData.dayMaterial &&
+            child.userData.nightMaterial
+        ){
+            child.material = isNight ? child.userData.nightMaterial : child.userData.dayMaterial;
+        }
+    });
+});
 
 document.querySelector(".sunny-side").addEventListener("click", (e) => {
-    console.log("clicked");
-
-},{passive: true});
+    isNight = !isNight;
+    console.log("BUTTON CLICKED");
+    scene.traverse((child)=> {
+        if(
+            child.isMesh &&
+            child.userData.dayMaterial &&
+            child.userData.nightMaterial
+        ){
+            child.material = isNight ? child.userData.nightMaterial : child.userData.dayMaterial;
+            child.material.map.minFilter = THREE.LinearFilter;
+        }
+    });
+});
 
 
 //SHOWING THE MODAL
@@ -130,26 +149,6 @@ dracoLoader.setDecoderPath( "./draco/" );
 const loader = new GLTFLoader();
 loader.setDRACOLoader( dracoLoader );
 
-let isNightMode = false;
-const handleThemeToggle = (e) => {
-    e.preventDefault();
-    //toggleFavicons
-
-    const isDark = document. body.classList.contains("night-theme");
-
-    document.body.classList.remove(isNight ? "night-theme" : "day-theme");
-    document.body.classList.add(isNight ? "day-theme" : "night-theme");
-
-    isNightMode = !isNightMode();
-    //buttonSounds.click.play();
-
-    gsap.to(themeToggleButton), {
-        rotate: 45,
-        scale: 5,
-        duration: 0.5,
-        ease: "back.out(2)";
-    }
-}
 
 const environmentMap = new THREE.CubeTextureLoader()
     .setPath( './textures/skybox/' )
@@ -340,10 +339,18 @@ loader.load("/models/Room_Portfolio_Please_Last.glb", (glb)=>{
             }else{
                 Object.keys(textureMap).forEach((key)=>{
                     if(child.name.includes(key)){
-                        const material = new THREE.MeshBasicMaterial({
+                        // const material = new THREE.MeshBasicMaterial({
+                        //     map: loadedTextures.day[key]
+                        // });
+                        child.userData.dayMaterial = new THREE.MeshBasicMaterial({
                             map: loadedTextures.day[key]
                         });
-                        child.material = material;
+
+                        child.userData.nightMaterial = new THREE.MeshBasicMaterial({
+                            map: loadedTextures.night[key]
+                        });
+
+                        child.material = child.userData.dayMaterial;
 
                         if(child.name.includes("Fan")){
                             yAxisFan.push(child);
