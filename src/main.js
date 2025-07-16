@@ -130,6 +130,27 @@ dracoLoader.setDecoderPath( "./draco/" );
 const loader = new GLTFLoader();
 loader.setDRACOLoader( dracoLoader );
 
+let isNightMode = false;
+const handleThemeToggle = (e) => {
+    e.preventDefault();
+    //toggleFavicons
+
+    const isDark = document. body.classList.contains("night-theme");
+
+    document.body.classList.remove(isNight ? "night-theme" : "day-theme");
+    document.body.classList.add(isNight ? "day-theme" : "night-theme");
+
+    isNightMode = !isNightMode();
+    //buttonSounds.click.play();
+
+    gsap.to(themeToggleButton), {
+        rotate: 45,
+        scale: 5,
+        duration: 0.5,
+        ease: "back.out(2)";
+    }
+}
+
 const environmentMap = new THREE.CubeTextureLoader()
     .setPath( './textures/skybox/' )
     .load( [
