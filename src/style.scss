@@ -141,6 +141,12 @@ p{
   justify-content: center;
   align-items: center;
 
+
+  &.is-phone{
+    .uniform-image{
+      height: 10vh;
+    }
+  }
   .uniform-image{
     z-index: 0;
     position: relative;
@@ -170,11 +176,7 @@ p{
   }
 
 
-  .is-phone{
-    .uniform-image{
-      height: 10vh;
-    }
-  }
+
 
   &:hover {
     .uniform-image {
