@@ -5,7 +5,16 @@ import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import gsap from "gsap"
 
-const isMobile = window.innerWidth < 530; // You can adjust the threshold
+function isPhone() {
+    return /iPhone|Android.*Mobile|Windows Phone/i.test(navigator.userAgent);
+}
+
+//check if it's phone or not.
+if(isPhone()){
+    document.body.classList.add("is-phone");
+    console.log("phone detected")
+}
+const isMobile = isPhone(); // You can adjust the threshold
 
 const canvas = document.querySelector("#experience-canvas");
 const sizes = {

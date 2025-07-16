@@ -1,5 +1,5 @@
 TODO
-1. pdf previewer
 2. project preview
 3. night -> day conversion
 4. add music controller.
+5. phone orientation recalculation.
