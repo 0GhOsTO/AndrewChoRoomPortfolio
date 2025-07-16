@@ -18,9 +18,9 @@ window.mobileCheck = function() {
 //check if it's phone or not.
 if(window.mobileCheck()){
     document.body.classList.add("is-phone");
-    console.log("phone detected")
+    console.log("phone detected");
 }else{
-}   console.log("it's not mobile!")
+   console.log("it's not mobile!");
 }
 const isMobile = window.mobileCheck(); // You can adjust the threshold
 
