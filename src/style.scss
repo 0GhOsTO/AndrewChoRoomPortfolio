@@ -112,6 +112,8 @@ p{
 
 }
 
+
+
 .pageAlign{
   display: flex;
   flex-direction: row;
@@ -167,6 +169,12 @@ p{
     pointer-events: none;
   }
 
+  .is-phone{
+    .uniform-image{
+      height: 10vh;
+    }
+  }
+
   &:hover {
     .uniform-image {
       opacity: 0.7;
@@ -176,6 +184,7 @@ p{
     }
   }
 }
+
 
 
 .first-line,
