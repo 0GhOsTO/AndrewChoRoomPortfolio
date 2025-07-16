@@ -37,6 +37,12 @@
     width: 100%;
     z-index: 2;
   }
+
+  .sunny-side{
+    position: absolute;
+    top: 3vh;
+    right: 3vw;
+  }
 }
 
 .modal-container{
@@ -134,6 +140,7 @@ p{
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
+
 .image-container {
   position: relative;
   display: flex;
@@ -156,11 +163,7 @@ p{
     transition: opacity 0.3s ease;
   }
 
-  .is-phone{
-    .uniform-image{
-      height: 10vh;
-    }
-  }
+
 
   .overlay-text {
     opacity: 0;
@@ -188,6 +191,15 @@ p{
     }
   }
 }
+
+.is-phone{
+  .image-container{
+    .uniform-image{
+      height: 10vh;
+    }
+  }
+}
+
 
 
 
