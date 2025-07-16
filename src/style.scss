@@ -61,10 +61,13 @@ p{
   font-size: 1.3rem;
 }
 
+//font size for thephone
 .is-phone{
   p{
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
+
+
 }
 
 .modal{
@@ -124,7 +127,6 @@ p{
   position: relative;
   justify-content: center;
   align-items: center;
-  height: 20vh;
   width: 100%;           // makes them fill container equally
   object-fit: cover;     // fills space without distortion
   border-radius: 12px;
@@ -143,12 +145,18 @@ p{
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 20vh;
+    height: 25vh;
     object-fit: cover;     // fills space without distortion
     border-radius: 12px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     transition: opacity 0.3s ease;
   }
+  .is-phone{
+    .uniform-image{
+      height: 15vh;
+    }
+  }
+
 
   .overlay-text {
     opacity: 0;
