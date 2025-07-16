@@ -22,6 +22,7 @@ if(window.mobileCheck()){
 }else{
    console.log("it's not mobile!");
 }
+
 const isMobile = window.mobileCheck(); // You can adjust the threshold
 
 const canvas = document.querySelector("#experience-canvas");
