@@ -25,6 +25,7 @@ if(window.mobileCheck()){
 
 const isMobile = window.mobileCheck(); // You can adjust the threshold
 
+
 const canvas = document.querySelector("#experience-canvas");
 const sizes = {
     height: window.innerHeight,
@@ -37,6 +38,8 @@ const modals = {
     project: document.querySelector(".modal.project"),
 };
 
+
+//Touching the modal exit button
 let touched = false;
 document.querySelectorAll(".modal-exit-button").forEach(button => {
     button.addEventListener("touchend", (e) => {
@@ -56,6 +59,18 @@ document.querySelectorAll(".modal-exit-button").forEach(button => {
         hideModal(modal);
     },{passive: false});
 });
+
+let dayTimeTouched =false;
+document.querySelector(".sunny-side").addEventListener("touchend", (e) => {
+
+
+},{passive: true});
+
+document.querySelector(".sunny-side").addEventListener("click", (e) => {
+    console.log("clicked");
+
+},{passive: true});
+
 
 //SHOWING THE MODAL
 let isModalOpen = false;
@@ -77,6 +92,7 @@ const showModal = (modal) => {
     });
 };
 
+//hide the modal.
 const hideModal = (modal) => {
     isModalOpen = false;
     controls.enabled = true;
@@ -156,31 +172,31 @@ const textureMap = {
     },
     Absolution: {
         day: "/textures/room/day/pngDay/DayAbsolution.webp",
-        night:"/textures/room/day/pngNight/NightAbsolution.webp",
+        night:"/textures/room/night/pngNight/NightAbsolution.webp",
     },
     AlanTuring: {
         day: "/textures/room/day/pngDay/DayAlanTuring.webp",
-        night:"/textures/room/day/pngNight/NightDayAlanTuring.webp",
+        night:"/textures/room/night/pngNight/NightDayAlanTuring.webp",
     },
     HotFuss: {
         day: "/textures/room/day/pngDay/DayHotFuss.webp",
-        night:"/textures/room/day/pngNight/NightHotFuss.webp",
+        night:"/textures/room/night/pngNight/NightHotFuss.webp",
     },
     Note: {
         day: "/textures/room/day/pngDay/DayNotes.webp",
-        night: "/textures/room/day/pngNight/NightNotes.webp",
+        night: "/textures/room/night/pngNight/NightNotes.webp",
     },
     OriginOfSymmetry: {
         day: "/textures/room/day/pngDay/DayOriginOfSymmetry.webp",
-        night:"/textures/room/day/pngNight/NightOriginOfSymmetry.webp",
+        night:"/textures/room/night/pngNight/NightOriginOfSymmetry.webp",
     },
     PepperTones: {
         day: "/textures/room/day/pngDay/DayPepperTones.webp",
-        night:"/textures/room/day/pngNight/NightPepperTones.webp",
+        night:"/textures/room/night/pngNight/NightPepperTones.webp",
     },
     ShapeOfYou: {
         day: "/textures/room/day/pngDay/DayShapeOfYou.webp",
-        night:"/textures/room/day/pngNight/NightShapeOfYou.webp",
+        night:"/textures/room/night/pngNight/NightShapeOfYou.webp",
     },
 };
 
