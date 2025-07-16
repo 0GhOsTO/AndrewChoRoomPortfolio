@@ -151,11 +151,6 @@ p{
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     transition: opacity 0.3s ease;
   }
-  .is-phone{
-    .uniform-image{
-      height: 10vh;
-    }
-  }
 
 
   .overlay-text {
@@ -257,10 +252,6 @@ p{
     cursor: pointer;
 
     overflow-x: visible;
-
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    transition: background-color 0.3s ease, transform 0.2s;
-
   }
 }
 
