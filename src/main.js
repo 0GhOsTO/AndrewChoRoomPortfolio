@@ -20,7 +20,7 @@ if(window.mobileCheck()){
     document.body.classList.add("is-phone");
     console.log("phone detected");
 }else{
-   console.log("it's not mobile!");
+    console.log("it's not mobile!");
 }
 
 const isMobile = window.mobileCheck(); // You can adjust the threshold
@@ -31,6 +31,9 @@ const sizes = {
     height: window.innerHeight,
     width: window.innerWidth,
 };
+canvas.width = sizes.width;
+canvas.height = sizes.height;
+
 
 const modals = {
     profile: document.querySelector(".modal.profile"),
@@ -311,11 +314,11 @@ loader.load("/models/Room_Portfolio_UV.glb", (glb)=>{
             if(child.name.includes("ChairTop")){
                 child.rotation.y = -Math.PI/30;
                 gsap.to(child.rotation,{
-                   y: Math.PI/30,
-                   duration: 3,
-                   repeat: -1,
-                   yoyo: true,
-                   ease: "sine.inOut",
+                    y: Math.PI/30,
+                    duration: 3,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
                     id: "chair-rotation"
                 });
             }
@@ -333,9 +336,9 @@ loader.load("/models/Room_Portfolio_UV.glb", (glb)=>{
                     envMapIntensity: 1,
                 })
             }else if(child.name.includes("MachineLearningScreen")){
-                    child.material = new THREE.MeshBasicMaterial({
-                       map: videoTexture
-                    });
+                child.material = new THREE.MeshBasicMaterial({
+                    map: videoTexture
+                });
             }else{
                 Object.keys(textureMap).forEach((key)=>{
                     if(child.name.includes(key)){
@@ -387,7 +390,8 @@ if(isMobile){
 
 const renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true} );
 renderer.setSize( sizes.width, sizes.height );
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setPixelRatio(2);
+//if you can't find it, 2 is also the option.
 
 const geometry = new THREE.BoxGeometry( 1, 1, 1 );
 const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
