@@ -89,6 +89,7 @@ document.querySelector(".sunny-side").addEventListener("click", (e) => {
         ){
             child.material = isNight ? child.userData.nightMaterial : child.userData.dayMaterial;
             child.material.map.minFilter = THREE.LinearFilter;
+            child.material.map.magFilter = THREE.LinearFilter;
         }
     });
 });
@@ -353,7 +354,7 @@ loader.load("/models/Room_Portfolio_UV.glb", (glb)=>{
                             map: loadedTextures.night[key]
                         });
 
-                        child.material = child.userData.dayMaterial;
+                        child.material = child.userData.nightMaterial;
 
                         if(child.name.includes("Fan")){
                             yAxisFan.push(child);
