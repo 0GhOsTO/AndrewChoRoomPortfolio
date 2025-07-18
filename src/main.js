@@ -243,20 +243,20 @@ Object.entries(textureMap).forEach(([key, paths]) => {
     loadedTextures.night[key] = nightTexture;
 });
 
-const preloadNightTextures = () => {
-    Object.entries(loadedTextures.night).forEach(([key, texture]) => {
-        const dummyMat = new THREE.MeshBasicMaterial({ map: texture });
-        const dummyMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), dummyMat);
-        dummyMesh.visible = false;
-        scene.add(dummyMesh);
-
-        renderer.render(scene, camera); // Force GPU upload
-
-        scene.remove(dummyMesh);
-        dummyMat.dispose();
-        dummyMesh.geometry.dispose();
-    });
-};
+// const preloadNightTextures = () => {
+//     Object.entries(loadedTextures.night).forEach(([key, texture]) => {
+//         const dummyMat = new THREE.MeshBasicMaterial({ map: texture });
+//         const dummyMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), dummyMat);
+//         dummyMesh.visible = false;
+//         scene.add(dummyMesh);
+//
+//         renderer.render(scene, camera); // Force GPU upload
+//
+//         scene.remove(dummyMesh);
+//         dummyMat.dispose();
+//         dummyMesh.geometry.dispose();
+//     });
+// };
 
 
 const videoElement = document.createElement("video");
@@ -416,7 +416,7 @@ const renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true} );
 renderer.setSize( sizes.width, sizes.height );
 renderer.setPixelRatio(2);
 
-preloadNightTextures();
+// preloadNightTextures();
 
 
 
