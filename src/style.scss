@@ -288,7 +288,7 @@ p{
 
   width: 3rem;
   height: 3rem;
-  background-color: #416cef;
+  background-color: #ef8f41;
   border-radius: 12px;
   border: none;
 
@@ -296,12 +296,17 @@ p{
   transition: background-color 0.3s ease, transform 0.2s;
 
   &:hover {
-    background-color: #3e5ae8;
+    background-color: #ea9a69;
     transform: scale(1.05);
   }
 
   &.night{
-    background-color: #444;
+    transition: background-color 0.5s ease, transform 0.2s;
+    background-color: #284095;
+
+    &:hover{
+      background-color: #3e5ae8;
+    }
   }
 
   .brightness-icon{

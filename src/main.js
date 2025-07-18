@@ -66,6 +66,12 @@ document.querySelectorAll(".modal-exit-button").forEach(button => {
 let isNight =false;
 document.querySelector(".sunny-side").addEventListener("touchend", (e) => {
     isNight = !isNight;
+
+    if(isNight){
+        document.querySelector(".sunny-side").classList.add("night");
+    }else{
+        document.querySelector(".sunny-side").classList.remove("night");
+    }
     console.log("BUTTON CLICKED");
     scene.traverse((child)=> {
         if(
@@ -82,6 +88,12 @@ document.querySelector(".sunny-side").addEventListener("touchend", (e) => {
 
 document.querySelector(".sunny-side").addEventListener("click", (e) => {
     isNight = !isNight;
+
+    if(isNight){
+        document.querySelector(".sunny-side").classList.add("night");
+    }else{
+        document.querySelector(".sunny-side").classList.remove("night");
+    }
     console.log("BUTTON CLICKED");
     scene.traverse((child)=> {
         if(
@@ -407,9 +419,10 @@ const camera = new THREE.PerspectiveCamera(
 if(isMobile){
     camera.position.set(13.302868985434001, 7.984620033890129, 13.283042054058505);
 }else{
-    camera.position.set( 9.341425508289262, 6.582700064329998, 9.4580936212497 );
+    camera.position.set( 10.920282938390976, 7.886808396355996, 10.203877569662664);
 }
-
+//Cam:  _Vector3 {x: 10.147047801287691, y: 6.953399842088398, z: 9.815112402904434}
+// main.js:607 Target:  _Vector3 {x: -0.9215220520094011, y: 3.272509195393467, z: 0.5129822401320736}
 const renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true} );
 
 
@@ -442,7 +455,7 @@ controls.dampingFactor = 0.05;
 controls.update();
 
 //mobile
-controls.target.set(-2.183442135866024, 2.5041508713161345, -1.66967449867141);
+controls.target.set(-1, 2.7361849533926503, -1.681153551902111 );
 
 //Object { x: -2.183442135866024, y: 2.5041508713161345, z: -1.66967449867141 }
 // main.js:502:13
@@ -590,9 +603,16 @@ function playHoverAnimation(object, isHovering){
 const render = () => {
     controls.update();
 
-    // console.log(camera.position); // [x, y, z]
-    // // console.log("0000");
-    // console.log(controls.target);
+    document.addEventListener('mousemove', function(event) {
+        // clientX and clientY provide the coordinates relative to the viewport
+        const mouseX = event.clientX;
+        const mouseY = event.clientY;
+
+        console.log(`Mouse X: ${mouseX}, Mouse Y: ${mouseY}`);
+    });
+    console.log("Cam: ", camera.position); // [x, y, z]
+    // console.log("0000");
+    console.log("Target: ",controls.target);
     // @TODO: Finish underneath line and grab the rotation coordinate.
     // Change the name of the button through blender
     // Delete some of the useless sides of the walls.
