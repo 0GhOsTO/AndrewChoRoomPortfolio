@@ -243,6 +243,22 @@ Object.entries(textureMap).forEach(([key, paths]) => {
     loadedTextures.night[key] = nightTexture;
 });
 
+const preloadNightTextures = () => {
+    Object.entries(loadedTextures.night).forEach(([key, texture]) => {
+        const dummyMat = new THREE.MeshBasicMaterial({ map: texture });
+        const dummyMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), dummyMat);
+        dummyMesh.visible = false;
+        scene.add(dummyMesh);
+
+        renderer.render(scene, camera); // Force GPU upload
+
+        scene.remove(dummyMesh);
+        dummyMat.dispose();
+        dummyMesh.geometry.dispose();
+    });
+};
+
+
 const videoElement = document.createElement("video");
 videoElement.src = "/textures/video/screen.mp4";
 videoElement.loop = true;
@@ -343,6 +359,7 @@ loader.load("/models/Room_Portfolio_UV.glb", (glb)=>{
                     map: videoTexture
                 });
             }else{
+
                 Object.keys(textureMap).forEach((key)=>{
                     if(child.name.includes(key)){
                         // const material = new THREE.MeshBasicMaterial({
@@ -377,6 +394,8 @@ loader.load("/models/Room_Portfolio_UV.glb", (glb)=>{
     scene.add(glb.scene);
 });
 
+
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
     45,
@@ -392,8 +411,16 @@ if(isMobile){
 }
 
 const renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true} );
+
+
 renderer.setSize( sizes.width, sizes.height );
 renderer.setPixelRatio(2);
+
+preloadNightTextures();
+
+
+
+
 //if you can't find it, 2 is also the option.
 
 const geometry = new THREE.BoxGeometry( 1, 1, 1 );
