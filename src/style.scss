@@ -300,6 +300,10 @@ p{
     transform: scale(1.05);
   }
 
+  &.night{
+    background-color: #444;
+  }
+
   .brightness-icon{
     width: 70%;
     height: 70%;

@@ -202,7 +202,7 @@ const textureMap = {
     },
     AlanTuring: {
         day: "/textures/room/day/pngDay/DayAlanTuring.webp",
-        night:"/textures/room/night/pngNight/NightDayAlanTuring.webp",
+        night:"/textures/room/night/pngNight/NightAlanTuring.webp",
     },
     HotFuss: {
         day: "/textures/room/day/pngDay/DayHotFuss.webp",
