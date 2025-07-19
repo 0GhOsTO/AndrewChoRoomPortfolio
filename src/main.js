@@ -25,7 +25,6 @@ if(window.mobileCheck()){
 
 const isMobile = window.mobileCheck(); // You can adjust the threshold
 
-
 const canvas = document.querySelector("#experience-canvas");
 const sizes = {
     height: window.innerHeight,
@@ -417,10 +416,14 @@ const camera = new THREE.PerspectiveCamera(
 );
 //mobile
 if(isMobile){
-    camera.position.set(13.302868985434001, 7.984620033890129, 13.283042054058505);
+    camera.position.set(15.287236913620506, 8.814046234684923, 14.066318729344601);
 }else{
     camera.position.set( 10.920282938390976, 7.886808396355996, 10.203877569662664);
 }
+//mobile: Cam:  I {x: 15.287236913620506, y: 8.814046234684923, z: 14.066318729344601}
+// index-BhUqK7FV.js:3842 Target:  I {x: -0.9162087300316147, y: 2.7586651728020395, z: -0.6999569484782481}
+
+
 //Cam:  _Vector3 {x: 10.147047801287691, y: 6.953399842088398, z: 9.815112402904434}
 // main.js:607 Target:  _Vector3 {x: -0.9215220520094011, y: 3.272509195393467, z: 0.5129822401320736}
 const renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true} );
@@ -455,7 +458,11 @@ controls.dampingFactor = 0.05;
 controls.update();
 
 //mobile
-controls.target.set(-1, 2.7361849533926503, -1.681153551902111 );
+if(isMobile){
+    controls.target.set(-0.9162087300316147, 2.7586651728020395, -0.6999569484782481);
+}else{
+    controls.target.set(-1, 2.7361849533926503, -1.681153551902111 );
+}
 
 //Object { x: -2.183442135866024, y: 2.5041508713161345, z: -1.66967449867141 }
 // main.js:502:13
