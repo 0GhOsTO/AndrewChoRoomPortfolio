@@ -65,11 +65,19 @@ document.querySelectorAll(".modal-exit-button").forEach(button => {
 let isNight =false;
 document.querySelector(".sunny-side").addEventListener("touchend", (e) => {
     isNight = !isNight;
-
     if(isNight){
         document.querySelector(".sunny-side").classList.add("night");
+        document.querySelectorAll(".modal").forEach(modal => modal.classList.add("night"));
+        document.querySelector(".modal-content").classList.add("night");
+        document.querySelector(".resume-content").classList.add("night");
+        document.querySelectorAll(".modal-title").forEach(content => content.classList.add("night"));
+
     }else{
         document.querySelector(".sunny-side").classList.remove("night");
+        document.querySelectorAll(".modal").forEach(modal => modal.classList.remove("night"));
+        document.querySelectorAll(".modal-content").forEach(content => content.classList.add("night"));
+        document.querySelector(".modal-title").classList.remove("night");
+        document.querySelectorAll(".modal-title").forEach(content => content.classList.remove("night"));
     }
     console.log("BUTTON CLICKED");
     scene.traverse((child)=> {
@@ -87,11 +95,16 @@ document.querySelector(".sunny-side").addEventListener("touchend", (e) => {
 
 document.querySelector(".sunny-side").addEventListener("click", (e) => {
     isNight = !isNight;
-
     if(isNight){
         document.querySelector(".sunny-side").classList.add("night");
+        document.querySelectorAll(".modal").forEach(modal => modal.classList.add("night"));
+        document.querySelectorAll(".modal-content").forEach(content => content.classList.add("night"));
+        document.querySelectorAll(".modal-title").forEach(content => content.classList.add("night"));
     }else{
         document.querySelector(".sunny-side").classList.remove("night");
+        document.querySelectorAll(".modal").forEach(modal => modal.classList.remove("night"));
+        document.querySelectorAll(".modal-content").forEach(content => content.classList.remove("night"));
+        document.querySelectorAll(".modal-title").forEach(content => content.classList.remove("night"));
     }
     console.log("BUTTON CLICKED");
     scene.traverse((child)=> {
@@ -463,11 +476,6 @@ if(isMobile){
 }else{
     controls.target.set(-1, 2.7361849533926503, -1.681153551902111 );
 }
-
-//Object { x: -2.183442135866024, y: 2.5041508713161345, z: -1.66967449867141 }
-// main.js:502:13
-// Object { x: 9.341425508289262, y: 6.582700064329998, z: 9.4580936212497 }
-
 
 //Object { x: 3 }
 // main.js:482:13

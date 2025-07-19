@@ -83,6 +83,9 @@ p{
   .modal-title{
     font-family: "HelveticaBold", serif;
     font-size: 30px;
+    &.night{
+      color: #ffd294;
+    }
   }
 
   position: fixed;
@@ -90,12 +93,19 @@ p{
   padding: 2rem;
   max-height: 80vh;
   max-width: 700px;
+  transition: background-color 0.3s ease, transform 0.2s;
 
   z-index: 999;
   display: none;
   background-color: #f5e6df;
+
+  &.night {
+    transition: background-color 0.3s ease, transform 0.2s;
+    background-color: #222; // dark night background
+  }
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+
 
   overflow-y: auto;
   overflow-x: hidden;
@@ -104,6 +114,10 @@ p{
 
   .modal-content{
     color: #32312d;
+
+    &.night{
+      color: #f1f1f1;
+    }
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -304,10 +318,8 @@ p{
     transition: background-color 0.5s ease, transform 0.2s;
     background-color: #284095;
 
-    &:hover{
-      background-color: #3e5ae8;
-    }
   }
+
 
   .brightness-icon{
     width: 70%;
