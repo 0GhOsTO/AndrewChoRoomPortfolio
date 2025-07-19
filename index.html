@@ -2,14 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Andrew Cho's Room</title>
+
+
   </head>
   <body>
-    <div id="app"></div>
+    <div id="loading-screen">
+      <div class="loader-wrapper">
+        <div class="loader-bar"></div>
+        <div class="loader-text" style="visibility: hidden;">0%</div>
+      </div>
+    </div>
 
-    <div class = "modal-container">
+
+    <div class = "modal-container" style="visibility: hidden;">
       <div class = "profile modal">
         <button class = "modal-exit-button">×</button>
 
@@ -78,7 +85,7 @@
       </div>
 
       <div id = "experience">
-<!--        <p>I don't care!</p>-->
+  <!--        <p>I don't care!</p>-->
         <button class = "sunny-side">
           <img src="/others/brightness.svg" class = "brightness-icon" alt = "brightness-icon"/>
         </button>
@@ -86,6 +93,6 @@
       </div>
     </div>
 
-    <script type="module" src="/src/main.js"></script>
+      <script type="module" src="/src/main.js"></script>
   </body>
 </html>

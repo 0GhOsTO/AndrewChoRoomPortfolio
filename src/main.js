@@ -170,14 +170,40 @@ const socialLinks = {
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 //Loaders
-const textureLoader = new THREE.TextureLoader();
+// Loading Manager with progress tracking
+const loadingManager = new THREE.LoadingManager();
+let once = true;
 
-// Instantiate a loader
+loadingManager.onProgress = (url, loaded, total) => {
+    if(once){
+        once = false;
+        document.querySelector(".loader-text").style.visibility = "visible";
+    }
+    const progress = Math.floor((loaded / total) * 100);
+    document.querySelector(".loader-bar").style.height = `${progress}%`;
+    document.querySelector(".loader-text").textContent = `${progress}%`;
+};
+
+loadingManager.onLoad = () => {
+    const loadingScreen = document.getElementById("loading-screen");
+    loadingScreen.classList.add("fade-out");
+    document.querySelector(".modal-container").style.visibility = "visible";
+    setTimeout(() => {
+        loadingScreen.remove();
+    }, 500);
+};
+
+const textureLoader = new THREE.TextureLoader(loadingManager);
+
 const dracoLoader = new DRACOLoader();
-dracoLoader.setDecoderPath( "./draco/" );
+dracoLoader.setDecoderPath("./draco/");
 
-const loader = new GLTFLoader();
-loader.setDRACOLoader( dracoLoader );
+const gltfLoader = new GLTFLoader(loadingManager);
+gltfLoader.setDRACOLoader(dracoLoader);
+
+// Replace `loader` usage with `gltfLoader`
+const loader = gltfLoader;
+
 
 
 const environmentMap = new THREE.CubeTextureLoader()
@@ -321,7 +347,7 @@ function handleRaycasterInteraction() {
         console.log("Clicked on:", object.name);
 
         Object.entries(socialLinks).forEach(([key, url])=>{
-            console.log("key: ", key, "| url: ", url);
+            // console.log("key: ", key, "| url: ", url);
             if(object.name.includes(key)){
                 const newWindow = window.open();
                 newWindow.opener = null;
@@ -416,6 +442,14 @@ loader.load("/models/Room_Portfolio_UV.glb", (glb)=>{
     });
 
     scene.add(glb.scene);
+
+    const loadingScreen = document.getElementById('loading-screen');
+    loadingScreen.classList.add('fade-out');
+
+    // Optional: remove from DOM after fade
+    setTimeout(() => {
+        loadingScreen.remove();
+    }, 500); // match transition duration
 });
 
 
@@ -505,7 +539,7 @@ function playHoverAnimation(object, isHovering){
     gsap.killTweensOf(object.position);
 
     if(isHovering){
-        console.log("name: ", object.name);
+        // console.log("name: ", object.name);
         //Bass
         if(object.name.includes("Bass")){
             gsap.to(object.scale,{
@@ -623,11 +657,11 @@ const render = () => {
         const mouseX = event.clientX;
         const mouseY = event.clientY;
 
-        console.log(`Mouse X: ${mouseX}, Mouse Y: ${mouseY}`);
+        // console.log(`Mouse X: ${mouseX}, Mouse Y: ${mouseY}`);
     });
-    console.log("Cam: ", camera.position); // [x, y, z]
-    // console.log("0000");
-    console.log("Target: ",controls.target);
+    // console.log("Cam: ", camera.position); // [x, y, z]
+    // // console.log("0000");
+    // console.log("Target: ",controls.target);
     // @TODO: Finish underneath line and grab the rotation coordinate.
     // Change the name of the button through blender
     // Delete some of the useless sides of the walls.
