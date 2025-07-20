@@ -75,7 +75,7 @@ document.querySelector(".sunny-side").addEventListener("touchend", (e) => {
     }else{
         document.querySelector(".sunny-side").classList.remove("night");
         document.querySelectorAll(".modal").forEach(modal => modal.classList.remove("night"));
-        document.querySelectorAll(".modal-content").forEach(content => content.classList.add("night"));
+        document.querySelectorAll(".modal-content").forEach(content => content.classList.remove("night"));
         document.querySelector(".modal-title").classList.remove("night");
         document.querySelectorAll(".modal-title").forEach(content => content.classList.remove("night"));
     }
