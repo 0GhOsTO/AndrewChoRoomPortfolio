@@ -21,11 +21,11 @@ This is Andrew Cho's website project created using three.js and the blender.
 * Pixel per ratio is 2(lower 2 resulted multiple mimap errors)
 * Used DRACO
 
-###Process of Creation
+### Process of Creation
 
 
 
-#To be updated
+# To be updated
 - Add music sounds
 - Add interactive sounds or animation if it's clicked by user
 - Number of projects that I did will be updated. 
