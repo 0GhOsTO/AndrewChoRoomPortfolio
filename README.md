@@ -2,8 +2,6 @@
 Andrew Cho's website created by three.js and blender
 
 
-# TUNIN
-
 ## Table of Contents
 1. [Preview](#Preview)
 
@@ -16,8 +14,7 @@ This is Andrew Cho's website project created using three.js and the blender.
 - **Mobile:** It will work exactly same in the mobile version too. 
 
 ## Product Spec
-
-<img src="https://github.com/0GhOsTO/AndrewChoWeb/blob/main/Preview.png" width=800>
+<img src="https://github.com/0GhOsTO/AndrewChoWeb/blob/master/public/others/AndrewChoPortfolio.png" width=800>
 - Beautifully baked with cycle: both day & night
 - Pixel per ratio is 2(lower 2 resulted multiple mimap errors)
 - Used DRACO
