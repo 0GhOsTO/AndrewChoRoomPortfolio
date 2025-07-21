@@ -11,7 +11,8 @@ This is Andrew Cho's website project created using three.js and the blender.
 - **Mobile:** It will work exactly same in the mobile version too. 
 
 ## Product Spec
-<img src="https://github.com/0GhOsTO/AndrewChoRoomPortfolio/blob/master/public/others/AndrewChoPortfolio.png" width=800>
+![Andrew Cho Portfolio](https://github.com/0GhOsTO/AndrewChoRoomPortfolio/blob/master/public/others/AndrewChoPortfolio.png)
+
 - Beautifully baked with cycle: both day & night
 - Pixel per ratio is 2(lower 2 resulted multiple mimap errors)
 - Used DRACO
