@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="This is Andrew Cho's Portfolio" />
+    <meta name="author" content="Andrew Cho" />
     <title>Andrew Cho's Room</title>
-
 
   </head>
   <body>
@@ -18,7 +19,9 @@
 
     <div class = "modal-container" style="visibility: hidden;">
       <div class = "profile modal">
-        <button class = "modal-exit-button">×</button>
+        <button class="modal-exit-button MODAL">
+          <img src="/others/x-icon.svg" alt="Close" />
+        </button>
 
         <div class = "modal-content">
           <h1 class = "modal-title">Andrew Cho</h1>
@@ -59,27 +62,44 @@
           <a href = "https://drive.usercontent.google.com/u/0/uc?id=15SA6izTmYG0JIFbidw6y-eN3x2PZVH4r&export=download/" class="download-button">
             <img src="/others/download_but.svg" class = "download-icon" alt = "Download Icon"/>
           </a>
-          <button class = "modal-exit-button">×</button>
+          <button class="modal-exit-button MODAL">
+            <img src="/others/x-icon.svg" alt="Close" />
+          </button>
           <img src = "/others/AndrewCho_Resume.png" alt ="resume" class = "resume-image"/>
         </div>
       </div>
 
       <div class = "project modal">
         <h1 class = "modal-title">Project</h1>
-        <button class = "modal-exit-button MODAL">×</button>
+        <button class="modal-exit-button MODAL">
+          <img src="/others/x-icon.svg" alt="Close" />
+        </button>
         <div class = "pageAlign">
           <div class = "first-line">
+            <div class = "image-container">
+              <a href = "https://colab.research.google.com/drive/1muFn-TjIk1AdxrWyVgViqF5pt9m1eRuB?usp=sharing" class = "uniform-image"><img src = "/others/AmazonTextract.png" class = "uniform-image" alt="Closest-Stop"/></a>
+              <p class = "overlay-text">Converting PDF to HTML using Amazon s3 Textract OCR.</p>
+            </div>
             <div class = "image-container">
               <a href = "https://github.com/0GhOsTO/ClosestStation" class = "uniform-image"><img src = "/others/ClosestStop.png" class = "uniform-image" alt="Closest-Stop"/></a>
               <p class = "overlay-text">This shows the closest T station. Created by T API, react.</p>
             </div>
+            <div class = "image-container">
+              <a href = "https://andrewcho.vercel.app/" class = "uniform-image"><img src = "/others/ComingSoon.png" class = "uniform-image" alt="Closest-Stop"/></a>
+              <p class = "overlay-text">Audio Machine Learning. DCASE</p>
+            </div>
           </div>
+
+
           <div class = "second-line">
             <div class = "image-container">
               <a href = "https://github.com/0GhOsTO/AndrewChoRoomPortfolio" class = "uniform-image"><img src = "/others/AndrewChoPortfolio.png" class = "uniform-image" alt = "Portfolio"/></a>
               <p class = "overlay-text">This is the current website you are in. Made with blender and JS.</p>
             </div>
-
+            <div class = "image-container">
+              <a href = "https://github.com/0GhOsTO/Eventful.git" class = "uniform-image"><img src = "/others/Eventful.png" class = "uniform-image" alt="Closest-Stop"/></a>
+              <p class = "overlay-text">Grab the API of loal events. Has better functionality than Eventbrite. XML, Kotlin, Back4App, SQL were involved.</p>
+            </div>
           </div>
         </div>
       </div>

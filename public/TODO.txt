@@ -1,5 +1,4 @@
 TODO
-2. project preview
-3. night -> day conversion
-4. add music controller.
-5. phone orientation recalculation.
+1. Add music
+2. Add more Projects
+3. Add more interactions

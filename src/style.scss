@@ -2,7 +2,7 @@
 @use "./styles/reset.scss";
 @use "./styles/variables.scss" as vars;
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -82,25 +82,21 @@
   top: 0;
   left: 0;
   overflow: hidden;
-  // This is how you create the break point so that you do not need to type and convert the media screne everytime
-  //  @include(<=mobile) {
-  //
-  //}
 
-  #experience-canvas{
+  #experience-canvas {
     height: 100%;
     width: 100%;
     z-index: 2;
   }
 
-  .sunny-side{
+  .sunny-side {
     position: absolute;
     top: 3vh;
     right: 3vw;
   }
 }
 
-.modal-container{
+.modal-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,7 +107,7 @@
   height: 100vh;
 }
 
-.profile-image{
+.profile-image {
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -119,26 +115,26 @@
   margin-bottom: 1px;
 }
 
-p{
+p {
   font-size: 1.3rem;
 }
 
-//font size for thephone
-.is-phone{
-  p{
+.is-phone {
+  p {
     font-size: 1rem;
   }
 }
 
-.modal{
+.modal {
   font-family: "Helvetica", serif;
   line-height: 1.3;
 
 
-  .modal-title{
+  .modal-title {
     font-family: "HelveticaBold", serif;
     font-size: 30px;
-    &.night{
+
+    &.night {
       color: #ffd294;
     }
   }
@@ -148,7 +144,8 @@ p{
   padding: 2rem;
   max-height: 80vh;
   max-width: 700px;
-  transition: background-color 0.3s ease, transform 0.2s;
+  transition: background-color 0.3s ease,
+  transform 0.2s;
 
   z-index: 999;
   display: none;
@@ -156,8 +153,9 @@ p{
 
   &.night {
     transition: background-color 0.3s ease, transform 0.2s;
-    background-color: #222; // dark night background
+    background-color: #222;
   }
+
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 
@@ -167,12 +165,13 @@ p{
   white-space: normal;
 
 
-  .modal-content{
+  .modal-content {
     color: #32312d;
 
-    &.night{
+    &.night {
       color: #f1f1f1;
     }
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -188,7 +187,7 @@ p{
 
 
 
-.pageAlign{
+.pageAlign {
   display: flex;
   flex-direction: row;
   gap: 2%;
@@ -199,12 +198,12 @@ p{
 }
 
 
-.uniform-image{
+.uniform-image {
   position: relative;
   justify-content: center;
   align-items: center;
-  width: 100%;           // makes them fill container equally
-  object-fit: cover;     // fills space without distortion
+  width: 100%;
+  object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
@@ -218,7 +217,7 @@ p{
 
 
 
-  .uniform-image{
+  .uniform-image {
     z-index: 0;
     position: relative;
     justify-content: center;
@@ -226,7 +225,7 @@ p{
     width: 100%;
     height: 25vh;
 
-    object-fit: cover;     // fills space without distortion
+    object-fit: cover;
     border-radius: 12px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     transition: opacity 0.3s ease;
@@ -236,7 +235,7 @@ p{
 
   .overlay-text {
     opacity: 0;
-    position: absolute;   // stays in flow
+    position: absolute; // stays in flow
     z-index: 1;
     background: rgba(0, 0, 0, 0.6);
     color: white;
@@ -244,7 +243,7 @@ p{
     padding: 0.5rem 1rem;
     border-radius: 8px;
     font-weight: bold;
-    transition:  0.3s ease;
+    transition: 0.3s ease;
     pointer-events: none;
   }
 
@@ -255,15 +254,16 @@ p{
     .uniform-image {
       opacity: 0.7;
     }
+
     .overlay-text {
       opacity: 1;
     }
   }
 }
 
-.is-phone{
-  .image-container{
-    .uniform-image{
+.is-phone {
+  .image-container {
+    .uniform-image {
       height: 17vh;
     }
   }
@@ -273,7 +273,7 @@ p{
 
 
 .first-line,
-.second-line{
+.second-line {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -288,8 +288,6 @@ p{
   right: 1rem;
   width: 3rem;
   height: 3rem;
-  font-size: 2rem;
-  line-height: 1; 
   font-weight: bold;
   border: none;
   border-radius: 12px;
@@ -300,9 +298,17 @@ p{
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
 
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   transition: background-color 0.3s ease, transform 0.2s;
+
+  img {
+    width: 1.8rem;
+    height: 1.8rem;
+    filter: brightness(0) invert(1);
+    color: white;
+  }
 
   &:hover {
     background-color: #d9363e;
@@ -310,14 +316,14 @@ p{
   }
 }
 
-.download-button{
+.download-button {
   position: absolute;
   top: 1rem;
   right: 5rem;
   width: 3rem;
   height: 3rem;
   border: none;
-  border-radius: 12px; // ← rounded square
+  border-radius: 12px;
   background-color: #3e6ee8;
   cursor: pointer;
 
@@ -336,7 +342,7 @@ p{
     transform: scale(1.05);
   }
 
-  .download-icon{
+  .download-icon {
     top: 1rem;
     right: 5rem;
     width: 2rem;
@@ -348,7 +354,7 @@ p{
   }
 }
 
-.sunny-side{
+.sunny-side {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -367,14 +373,14 @@ p{
     transform: scale(1.05);
   }
 
-  &.night{
+  &.night {
     transition: background-color 0.5s ease, transform 0.2s;
     background-color: #284095;
 
   }
 
 
-  .brightness-icon{
+  .brightness-icon {
     width: 70%;
     height: 70%;
   }
@@ -382,23 +388,23 @@ p{
 
 
 
-.resume-modal{
+.resume-modal {
   overflow-x: visible;
 }
 
-.resume-image{
+.resume-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   margin-bottom: 1px;
 }
 
-.resume-content{
+.resume-content {
   overflow-x: visible;
 }
 
 .modal::-webkit-scrollbar {
-  width: 17px; // vertical scrollbar
+  width: 17px;
 }
 
 .modal::-webkit-scrollbar-track {
@@ -409,7 +415,6 @@ p{
 .modal::-webkit-scrollbar-thumb {
   background: #da7702;
   border-radius: 8px;
-  //border: 2px solid #f0f0f0; // padding inside thumb
 }
 
 .modal::-webkit-scrollbar-thumb:hover {
