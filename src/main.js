@@ -62,6 +62,20 @@ document.querySelectorAll(".modal-exit-button").forEach(button => {
     },{passive: false});
 });
 
+// Tutorial overlay dismiss functionality
+const tutorialOverlay = document.getElementById("tutorial-overlay");
+if (tutorialOverlay) {
+    const dismissTutorial = () => {
+        tutorialOverlay.classList.add("fade-out");
+        setTimeout(() => {
+            tutorialOverlay.style.display = "none";
+        }, 500);
+    };
+
+    tutorialOverlay.addEventListener("click", dismissTutorial);
+    tutorialOverlay.addEventListener("touchend", dismissTutorial);
+}
+
 let isNight =false;
 document.querySelector(".sunny-side").addEventListener("touchend", (e) => {
     isNight = !isNight;
@@ -191,6 +205,23 @@ loadingManager.onLoad = () => {
     setTimeout(() => {
         loadingScreen.remove();
     }, 500);
+
+    // Show tutorial overlay after loading screen fades
+    const tutorialOverlay = document.getElementById("tutorial-overlay");
+    if (tutorialOverlay) {
+        // Show tutorial immediately after loading screen starts fading
+        setTimeout(() => {
+            tutorialOverlay.style.display = "flex";
+            
+            // Hide tutorial after 5 seconds
+            setTimeout(() => {
+                tutorialOverlay.classList.add("fade-out");
+                setTimeout(() => {
+                    tutorialOverlay.style.display = "none";
+                }, 500);
+            }, 5000);
+        }, 600); // Small delay to wait for loading screen to start fading
+    }
 };
 
 loadingManager.onError = (url) => {

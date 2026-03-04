@@ -61,6 +61,167 @@
 
 }
 
+// Tutorial Overlay
+#tutorial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 8888;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  cursor: pointer;
+
+  &.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .tutorial-content {
+    background: #f5e6df;
+    padding: 2.5rem;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.5s ease;
+  }
+
+  .tutorial-title {
+    font-family: "HelveticaBold", serif;
+    font-size: 2rem;
+    color: #333;
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+  }
+
+  .tutorial-section {
+    margin-bottom: 1.5rem;
+
+    &.mobile-controls {
+      display: none;
+    }
+  }
+
+  .control-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateX(5px);
+    }
+
+    .control-icon {
+      font-size: 2rem;
+      min-width: 2.5rem;
+      text-align: center;
+    }
+
+    .control-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+
+      strong {
+        font-family: "HelveticaBold", serif;
+        color: #333;
+        font-size: 1rem;
+      }
+
+      span {
+        color: #666;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .tutorial-hint {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+    margin: 1.5rem 0 0 0;
+    font-size: 1rem;
+  }
+
+  .tutorial-dismiss {
+    text-align: center;
+    color: #999;
+    margin: 0.5rem 0 0 0;
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Mobile specific tutorial
+.is-phone {
+  #tutorial-overlay {
+    .tutorial-section {
+      &.desktop-controls {
+        display: none;
+      }
+
+      &.mobile-controls {
+        display: block;
+      }
+    }
+
+    .tutorial-content {
+      padding: 2rem;
+    }
+
+    .tutorial-title {
+      font-size: 1.5rem;
+    }
+
+    .control-item {
+      .control-icon {
+        font-size: 1.5rem;
+        min-width: 2rem;
+      }
+
+      .control-text {
+        strong {
+          font-size: 0.9rem;
+        }
+
+        span {
+          font-size: 0.8rem;
+        }
+      }
+    }
+
+    .tutorial-hint {
+      font-size: 0.9rem;
+    }
+
+    .tutorial-dismiss {
+      font-size: 0.8rem;
+    }
+  }
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 
@@ -183,6 +344,127 @@ p {
     padding: 1rem 1rem 1rem 1rem;
   }
 
+}
+
+// Project Grid styles
+.project-content {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  a {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .project-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .project-info {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .project-title {
+    font-family: "HelveticaBold", serif;
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .project-description {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .project-tech {
+    font-size: 0.8rem;
+    color: #777;
+    font-style: italic;
+    margin: 0;
+  }
+}
+
+.modal.night {
+  .project-card {
+    background: rgba(50, 50, 50, 0.8);
+
+    .project-title {
+      color: #ffd294;
+    }
+
+    .project-description {
+      color: #ddd;
+    }
+
+    .project-tech {
+      color: #aaa;
+    }
+  }
+}
+
+// Phone responsive
+.is-phone {
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .project-card {
+    .project-image {
+      height: 150px;
+    }
+
+    .project-info {
+      padding: 0.75rem;
+    }
+
+    .project-title {
+      font-size: 1rem;
+    }
+
+    .project-description {
+      font-size: 0.85rem;
+    }
+
+    .project-tech {
+      font-size: 0.75rem;
+    }
+  }
 }
 
 

@@ -16,6 +16,62 @@
       </div>
     </div>
 
+    <div id="tutorial-overlay">
+      <div class="tutorial-content">
+        <h2 class="tutorial-title">How to Navigate</h2>
+        
+        <div class="tutorial-section desktop-controls">
+          <div class="control-item">
+            <div class="control-icon">🖱️</div>
+            <div class="control-text">
+              <strong>Left Click + Drag</strong>
+              <span>Rotate the view</span>
+            </div>
+          </div>
+          <div class="control-item">
+            <div class="control-icon">⇧</div>
+            <div class="control-text">
+              <strong>Shift + Click + Drag</strong>
+              <span>Pan the camera</span>
+            </div>
+          </div>
+          <div class="control-item">
+            <div class="control-icon">🖱️</div>
+            <div class="control-text">
+              <strong>Scroll Wheel</strong>
+              <span>Zoom in/out</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tutorial-section mobile-controls">
+          <div class="control-item">
+            <div class="control-icon">☝️</div>
+            <div class="control-text">
+              <strong>One Finger</strong>
+              <span>Rotate the view</span>
+            </div>
+          </div>
+          <div class="control-item">
+            <div class="control-icon">✌️</div>
+            <div class="control-text">
+              <strong>Two Fingers</strong>
+              <span>Pan and zoom</span>
+            </div>
+          </div>
+          <div class="control-item">
+            <div class="control-icon">🤏</div>
+            <div class="control-text">
+              <strong>Pinch</strong>
+              <span>Zoom in/out</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="tutorial-hint">Click on objects to learn more!</p>
+        <p class="tutorial-dismiss">Click anywhere to dismiss</p>
+      </div>
+    </div>
 
     <div class = "modal-container" style="visibility: hidden;">
       <div class = "profile modal">
@@ -70,36 +126,101 @@
       </div>
 
       <div class = "project modal">
-        <h1 class = "modal-title">Project</h1>
+        <h1 class = "modal-title">Projects</h1>
         <button class="modal-exit-button MODAL">
           <img src="/others/x-icon.svg" alt="Close" />
         </button>
-        <div class = "pageAlign">
-          <div class = "first-line">
-            <div class = "image-container">
-              <a href = "https://colab.research.google.com/drive/1muFn-TjIk1AdxrWyVgViqF5pt9m1eRuB?usp=sharing" class = "uniform-image"><img src = "/others/AmazonTextract.png" class = "uniform-image" alt="Closest-Stop"/></a>
-              <p class = "overlay-text">Converting PDF to HTML using Amazon s3 Textract OCR.</p>
+        <div class = "modal-content project-content">
+          <div class = "project-grid">
+            
+            <div class = "project-card">
+              <a href = "https://github.com/0GhOsTO/MBTAEstimation" target="_blank" rel="noopener noreferrer">
+                <img src = "/others/MBTAReliability.png" class = "project-image" alt="MBTA Reliability"/>
+                <div class = "project-info">
+                  <h3 class = "project-title">MBTA Reliability Tracker</h3>
+                  <p class = "project-description">Real-time MBTA Green Line prediction accuracy tracker that compares predicted vs. actual train arrivals and displays station "trustworthiness" scores.</p>
+                  <p class = "project-tech">Technologies: JavaScript, MBTA API, Real-time Data</p>
+                </div>
+              </a>
             </div>
-            <div class = "image-container">
-              <a href = "https://github.com/0GhOsTO/ClosestStation" class = "uniform-image"><img src = "/others/ClosestStop.png" class = "uniform-image" alt="Closest-Stop"/></a>
-              <p class = "overlay-text">This shows the closest T station. Created by T API, react.</p>
-            </div>
-            <div class = "image-container">
-              <a href = "https://colab.research.google.com/drive/19lGZSI3YbTBoPx3LKa3bRkk_SIrOQ-mj?usp=sharing" class = "uniform-image"><img src = "/others/AudioML.png" class = "uniform-image" alt="Closest-Stop"/></a>
-              <p class = "overlay-text">Audio Machine Learning. DCASE</p>
-            </div>
-          </div>
 
+            <div class = "project-card">
+              <a href = "https://github.com/0GhOsTO/frontend-pdf2html" target="_blank" rel="noopener noreferrer">
+                <img src = "/others/AmazonTextract.png" class = "project-image" alt="PDF to HTML Converter"/>
+                <div class = "project-info">
+                  <h3 class = "project-title">PDF to HTML Converter</h3>
+                  <p class = "project-description">Converting PDF documents to HTML using Amazon S3 Textract OCR technology for improved text extraction and web compatibility.</p>
+                  <p class = "project-tech">Technologies: AWS S3, Textract, Python</p>
+                </div>
+              </a>
+            </div>
 
-          <div class = "second-line">
-            <div class = "image-container">
-              <a href = "https://github.com/0GhOsTO/AndrewChoRoomPortfolio" class = "uniform-image"><img src = "/others/AndrewChoPortfolio.png" class = "uniform-image" alt = "Portfolio"/></a>
-              <p class = "overlay-text">This is the current website you are in. Made with blender and JS.</p>
+            <div class = "project-card">
+              <a href = "https://github.com/0GhOsTO/outlyingPitch" target="_blank" rel="noopener noreferrer">
+                <img src = "/others/AnalyzeBaseBallPitch.png" class = "project-image" alt="Baseball Pitch Analysis"/>
+                <div class = "project-info">
+                  <h3 class = "project-title">Baseball Pitch Predictor</h3>
+                  <p class = "project-description">Machine learning model that predicts which pitcher threw a pitch based on Statcast features and contextual data.</p>
+                  <p class = "project-tech">Technologies: Python, Machine Learning, Statcast API</p>
+                </div>
+              </a>
             </div>
-            <div class = "image-container">
-              <a href = "https://github.com/0GhOsTO/Eventful.git" class = "uniform-image"><img src = "/others/Eventful.png" class = "uniform-image" alt="Closest-Stop"/></a>
-              <p class = "overlay-text">Grab the API of loal events. Has better functionality than Eventbrite. XML, Kotlin, Back4App, SQL were involved.</p>
+
+            <div class = "project-card">
+              <a href = "https://github.com/0GhOsTO/ClosestStation" target="_blank" rel="noopener noreferrer">
+                <img src = "/others/ClosestStop.png" class = "project-image" alt="Closest Station"/>
+                <div class = "project-info">
+                  <h3 class = "project-title">Closest T Station Finder</h3>
+                  <p class = "project-description">Real-time application that finds and displays the nearest MBTA T station based on your current location.</p>
+                  <p class = "project-tech">Technologies: React, MBTA API, JavaScript</p>
+                </div>
+              </a>
             </div>
+
+            <div class = "project-card">
+              <a href = "https://docs.google.com/document/d/1IW0iy16z929KHxFAYFGzgaztnpE6VhqVZkJCwTeVtNs/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+                <img src = "/others/AudioML.png" class = "project-image" alt="Audio Machine Learning"/>
+                <div class = "project-info">
+                  <h3 class = "project-title">Audio Classification ML</h3>
+                  <p class = "project-description">Machine learning model for audio scene classification using the DCASE dataset for acoustic scene and event detection.</p>
+                  <p class = "project-tech">Technologies: Python, TensorFlow, DCASE</p>
+                </div>
+              </a>
+            </div>
+
+            <div class = "project-card">
+              <a href = "https://github.com/0GhOsTO/AndrewChoRoomPortfolio" target="_blank" rel="noopener noreferrer">
+                <img src = "/others/AndrewChoPortfolio.png" class = "project-image" alt="Portfolio Website"/>
+                <div class = "project-info">
+                  <h3 class = "project-title">3D Portfolio Website</h3>
+                  <p class = "project-description">Interactive 3D portfolio showcasing my work with a fully rendered room environment and day/night toggle functionality.</p>
+                  <p class = "project-tech">Technologies: Three.js, Blender, JavaScript, SCSS</p>
+                </div>
+              </a>
+            </div>
+
+            <div class = "project-card">
+              <a href = "https://github.com/0GhOsTO/Eventful.git" target="_blank" rel="noopener noreferrer">
+                <img src = "/others/Eventful.png" class = "project-image" alt="Eventful App"/>
+                <div class = "project-info">
+                  <h3 class = "project-title">Eventful - Local Events App</h3>
+                  <p class = "project-description">Mobile application that aggregates local events with enhanced functionality compared to Eventbrite, featuring robust backend integration.</p>
+                  <p class = "project-tech">Technologies: Kotlin, XML, Back4App, SQL</p>
+                </div>
+              </a>
+            </div>
+
+            <div class = "project-card">
+              <a href = "https://github.com/asmeulders/Palmodoro" target="_blank" rel="noopener noreferrer">
+                <img src = "/others/Palmodoro.png" class = "project-image" alt="Palmodoro Timer"/>
+                <div class = "project-info">
+                  <h3 class = "project-title">Palmodoro Timer</h3>
+                  <p class = "project-description">Lightweight JavaScript Pomodoro-style web timer designed for focused work sessions and scheduled breaks.</p>
+                  <p class = "project-tech">Technologies: JavaScript, HTML, CSS</p>
+                </div>
+              </a>
+            </div>
+
           </div>
         </div>
       </div>
