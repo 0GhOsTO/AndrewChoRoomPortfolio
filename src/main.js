@@ -193,6 +193,18 @@ loadingManager.onLoad = () => {
     }, 500);
 };
 
+loadingManager.onError = (url) => {
+    console.error("Asset failed to load:", url);
+    const loadingScreen = document.getElementById("loading-screen");
+    if (loadingScreen) {
+        loadingScreen.classList.add("fade-out");
+        setTimeout(() => {
+            loadingScreen.remove();
+        }, 500);
+    }
+    document.querySelector(".modal-container").style.visibility = "visible";
+};
+
 const textureLoader = new THREE.TextureLoader(loadingManager);
 
 const dracoLoader = new DRACOLoader();
@@ -318,7 +330,7 @@ videoElement.autoplay = true;
 videoElement.play();
 
 const videoTexture = new THREE.VideoTexture(videoElement);
-videoTexture.colorspace = THREE.SRGBColorSpace;
+videoTexture.colorSpace = THREE.SRGBColorSpace;
 videoTexture.flipY = false;
 
 window.addEventListener("mousemove", (e) => {
@@ -442,14 +454,16 @@ loader.load("/models/Room_Portfolio_UV.glb", (glb)=>{
     });
 
     scene.add(glb.scene);
-
-    const loadingScreen = document.getElementById('loading-screen');
-    loadingScreen.classList.add('fade-out');
-
-    // Optional: remove from DOM after fade
-    setTimeout(() => {
-        loadingScreen.remove();
-    }, 500); // match transition duration
+}, undefined, (error) => {
+    console.error("Failed to load model:", error);
+    document.querySelector(".modal-container").style.visibility = "visible";
+    const loadingScreen = document.getElementById("loading-screen");
+    if (loadingScreen) {
+        loadingScreen.classList.add("fade-out");
+        setTimeout(() => {
+            loadingScreen.remove();
+        }, 500);
+    }
 });
 
 
@@ -477,7 +491,8 @@ const renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true} );
 
 
 renderer.setSize( sizes.width, sizes.height );
-renderer.setPixelRatio(2);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setClearColor(0x111111, 1);
 
 // preloadNightTextures();
 
@@ -651,14 +666,6 @@ function playHoverAnimation(object, isHovering){
 
 const render = () => {
     controls.update();
-
-    document.addEventListener('mousemove', function(event) {
-        // clientX and clientY provide the coordinates relative to the viewport
-        const mouseX = event.clientX;
-        const mouseY = event.clientY;
-
-        // console.log(`Mouse X: ${mouseX}, Mouse Y: ${mouseY}`);
-    });
     // console.log("Cam: ", camera.position); // [x, y, z]
     // // console.log("0000");
     // console.log("Target: ",controls.target);
